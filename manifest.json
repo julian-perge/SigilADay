@@ -1,7 +1,7 @@
 {
-    "name": "SigilADay",
-    "version_number": "1.4.1",
-    "website_url": "https://github.com/ScottWilson0903/SigilADay",
+    "name": "SigilADay_julianperge",
+    "version_number": "1.0.0",
+    "website_url": "https://github.com/julian-perge/SigilADay",
     "description": "Collection of custom sigils",
     "dependencies": [
         "BepInEx-BepInExPack_Inscryption-5.4.1701",

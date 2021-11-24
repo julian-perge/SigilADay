@@ -73,7 +73,6 @@ namespace SigilADay
 				yield return new WaitForSeconds(0.2f);
 			}
 
-
 			yield return base.LearnAbility(0.25f);
 			yield break;
 		}
