@@ -41,6 +41,19 @@ namespace SigilADay
 
 	public class Split : CustomAbilityBehaviour
 	{
+
+		// private static List<string> _cardsToSpawnWhenPlaced = new()
+		// {
+		// 	"Lustrous", "Tranquility", "Insanity"
+		// };		
+		
+		private readonly List<string> _cardsToSpawnWhenPlaced = new()
+		{
+			"Amalgam", "Amoeba", "Ant"
+		};
+
+		private readonly List<string> _cardsAlreadySpawned = new();
+
 		public override bool RespondsToResolveOnBoard()
 		{
 			return true;
@@ -54,19 +67,22 @@ namespace SigilADay
 			// only get a list of player slots
 			var slotsWithCards = Singleton<BoardManager>.Instance.GetSlots(true);
 
-			if (slotsWithCards.TrueForAll(slot => slot is not null))
+			if (slotsWithCards.TrueForAll(slot => slot && slot.Card))
 			{
 				Plugin.Log.LogDebug("All slots are full, not spawning a copy.");
 			}
 			else
 			{
+				Plugin.Log.LogDebug("[Split] Starting spawning sequence");
 				// now only check those filtered cards that have terrain traits
-				foreach (var slot in slotsWithCards.Where(slot => !slot))
+				foreach (var slot in slotsWithCards.Where(slot => slot && !slot.Card))
 				{
-					Plugin.Log.LogDebug($"Spawning copy of [{base.Card.Info.name}] in slot [{slot.name}]");
-					PlayableCard copy = CardSpawner.SpawnPlayableCard(base.Card.Info);
+					// >= 0 AND <= 2
+					string cardToSpawn = getCardToSpawn();
+					
+					Plugin.Log.LogDebug($"-> Spawning [{cardToSpawn}] in slot [{slot.name}]");
+					PlayableCard copy = CardSpawner.SpawnPlayableCard(CardLoader.GetCardByName(cardToSpawn));
 					yield return Singleton<BoardManager>.Instance.ResolveCardOnBoard(copy, slot);
-					break;
 				}
 
 				Singleton<ViewManager>.Instance.SwitchToView(View.Board);
@@ -75,6 +91,22 @@ namespace SigilADay
 
 			yield return base.LearnAbility(0.25f);
 			yield break;
+		}
+
+		// Lustrous, Tranquility, and Insanity
+		private string getCardToSpawn()
+		{
+			string cardToSpawn = "";
+			// filter out already existing cards
+			List<string> listToCheck = _cardsToSpawnWhenPlaced.FindAll(str => !_cardsAlreadySpawned.Contains(str));
+			Plugin.Log.LogDebug($"listToCheck size [{listToCheck.Count}]");
+			int index = UnityEngine.Random.RandomRangeInt(0, listToCheck.Count());
+			Plugin.Log.LogDebug($"index generated [{index}]");
+			// for example, if 2 boards spaces are open, should only spawn 2 cards
+			cardToSpawn = listToCheck[index];
+			_cardsAlreadySpawned.Add(cardToSpawn);
+
+			return cardToSpawn;
 		}
 	}
 }
