@@ -1,20 +1,12 @@
 # SigilADay
-Collection of custom sigils added to daily by Cyantist.
+Collection of custom sigils added to daily by Julian Perge.
 
-## Sigils so far (Day 8)
-- BloodGuzzler: When a creature bearing this sigil deals damage, it gains 1 Health for each damage dealt.
-- Leech: When a creature bearing this sigil deals damage, it heals 1 Health for each damage dealt.
-- Regen 1: This creature will heal 1 Health at the end of it's owner's turn.
-- Regen 2: This creature will heal 2 Health at the end of it's owner's turn.
-- Regen 3: This creature will heal 3 Health at the end of it's owner's turn.
-- Regen: This creature will heal to full Health at the end of it's owner's turn.
-- Poisonous: When this creature perishes, it will kill the creature that killed it.
-- Thick Shell: When this creature is attacked, it will take one less damage.
-- Bonepicker - When this creature kills a creature, you gain one bone.
-- Nutritious - A creature gains 1 power and 2 health when summoned using a creature with this sigil as a sacrifice.
-- Transient - A creature with this sigil will return to your hand at the end of the turn.
-- Silence (WIP) - Creatures opposing a creature with this sigil have all their sigils silenced.
+## Sigils so far (Day 1)
+- Excavator: When played, remove all Terrain cards on your side of the field. For each card removed, place a Squirrel in your hand.
+- Nest: When attacked, this creature will tutor for a card from a specific set of cards that is not your main deck.
+- Split: When played, this creature will create a copy of itself in an open space on your side of the field.
 
+# MAYBE IN THE FUTURE I'LL SET THIS UP
 ## Suggest an idea
 [Suggest](https://forms.gle/2GtJP16gB6kUbrJg8)
 
@@ -24,6 +16,8 @@ Collection of custom sigils added to daily by Cyantist.
 [Day 9 Voting Link](https://forms.gle/q1sjWtH24tiBj35p9)
 
 [Day 10 Voting Link](https://forms.gle/FePigWwGPSazDBka9)
+
+
 
 ## Installation (automated)
 This is the recommended way to install the API on the game.
@@ -38,7 +32,7 @@ To install this plugin first you need to install BepInEx as a mod loader for Ins
 You will also need to install the [CardLoaderPlugin](https://github.com/ScottWilson0903/InscryptionAPI)
 To install Inscryption API you simply need to copy **API.dll** from [releases](https://github.com/ScottWilson0903/InscryptionAPI/releases) to **Inscryption/BepInEx/plugins**.
 
-To install SigilADay.dll you simply need to copy **SigilADay.dll** and the **Artwork** folder from the source code zip in [releases](https://github.com/ScottWilson0903/SigilADay/releases) to a **Cyantist-SigilADay** folder inside **Inscryption/BepInEx/plugins**.
+To install SigilADay_julianperge.dll you simply need to copy **SigilADay_julianperge.dll** and the **Artwork** folder from the source code zip in [releases](https://github.com/ScottWilson0903/SigilADay/releases) to a **JulianPerge-SigilADay** folder inside **Inscryption/BepInEx/plugins**.
 
 ## Can I donate?
 Donations are totally not needed, this is a passion project before anything else. If you do still want to donate though, you can buy me a coffee on [ko-fi](https://ko-fi.com/madcyantist).
