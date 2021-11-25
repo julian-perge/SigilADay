@@ -13,7 +13,7 @@ namespace SigilADay
 	{
 		private void AddNorseWarrior()
 		{
-			Texture2D defaultTexture = SigilUtils.LoadImageAndGetTexture("norse_warrior.png");
+			Texture2D defaultTexture = SigilUtils.LoadImageAndGetTexture("card_norse_warrior.png");
 
 			const string name = "NorseWarrior"; 
 			const string displayName = "Norse Warrior";
@@ -21,7 +21,7 @@ namespace SigilADay
 
 			NewCard.Add(name, displayName, 1, 1,
 				null, CardComplexity.Simple, CardTemple.Nature,
-				desc, bloodCost: 1, defaultTex: defaultTexture
+				desc, bloodCost: 1, defaultTex: defaultTexture, abilities: new List<Ability>() { Ability.Brittle }
 			);
 		}
 

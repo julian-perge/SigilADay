@@ -55,7 +55,6 @@
     <Message Text="Executing CopyDLLs task" Importance="High" />
 
     <Copy SourceFiles="$(TargetDir)$(ProjectName).dll;$(TargetDir)$(ProjectName).pdb" DestinationFolder="C:\Program Files (x86)\Steam\steamapps\common\Inscryption\BepInEx\plugins\" />
-<!--    <Copy SourceFiles="artwork_sigils" DestinationFolder="C:\Program Files (x86)\Steam\steamapps\common\Inscryption\BepInEx\plugins\" />-->
     
     <Copy Condition="Exists('C:\DEVELOPER\InscryptionMods\lib\')" SourceFiles="$(TargetDir)$(ProjectName).dll" DestinationFolder="C:\DEVELOPER\InscryptionMods\lib\" />
 

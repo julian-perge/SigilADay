@@ -14,7 +14,6 @@ namespace SigilADay_julianperge
 		public const string PluginGuid = "julianperge.inscryption.sigiladay";
 		private const string PluginName = "SigilADay_julianperge";
 		private const string PluginVersion = "1.1.0";
-		public static AssetBundle ArtworkAssets;
 
 		internal static ManualLogSource Log;
 
@@ -22,11 +21,10 @@ namespace SigilADay_julianperge
 		{
 			Log = base.Logger;
 			
-			// ArtworkAssets = AssetBundle.LoadFromFile(SigilUtils.GetFullPathOfFile("artwork_sigils"));
 			
 			AddExcavator();
-			// AddNest();;
-			// AddSplit();
+			AddNest();;
+			AddSplit();
 		}
 	}
 }
