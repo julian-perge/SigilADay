@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using APIPlugin;
 using DiskCardGame;
-using SigilADay.lib;
+using SigilADay_julianperge.lib;
 using UnityEngine;
 
-namespace SigilADay
+namespace SigilADay_julianperge
 {
 	public partial class Plugin
 	{
@@ -26,9 +27,10 @@ namespace SigilADay
 			lines.Add(line);
 			info.abilityLearnedDialogue = new DialogueEvent.LineSet(lines);
 
-			Texture2D tex = SigilUtils.LoadImageAndGetTexture("ability_excavator.png");
+			Texture2D tex = new Texture2D(2,2);
+			tex.LoadImage(SigilADay_julianperge.Properties.Resources.ability_excavator);
 
-			var abIds = AbilityIdentifier.GetAbilityIdentifier(PluginGuid, info.rulebookName);
+			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
 			// set ability to behavior class
 			NewAbility newAbility = new NewAbility(info, typeof(Excavator), tex, abIds);
 			Excavator.ability = newAbility.ability;

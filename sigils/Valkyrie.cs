@@ -5,42 +5,56 @@ using APIPlugin;
 using DiskCardGame;
 using SigilADay_julianperge.lib;
 using UnityEngine;
+using static SigilADay_julianperge.Plugin;
 
-// using UnityEngine.UIElements;
-
-namespace SigilADay_julianperge
+namespace SigilADay
 {
 	public partial class Plugin
 	{
-		public NewAbility AddSplit()
+		private void AddNorseWarrior()
 		{
-			// setup ability
-			const string rulebookName = "Split";
-			const string desc =
-				"When played, [creature] will create a copy of itself in an open space on your side of the field.";
-			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, desc);
+			Texture2D defaultTexture = SigilUtils.LoadImageAndGetTexture("norse_warrior.png");
 
-			// lines
+			const string name = "NorseWarrior"; 
+			const string displayName = "Norse Warrior";
+			const string desc = "Odin would be proud!";
+
+			NewCard.Add(name, displayName, 1, 1,
+				null, CardComplexity.Simple, CardTemple.Nature,
+				desc, bloodCost: 1, defaultTex: defaultTexture
+			);
+		}
+
+		private NewAbility AddFlightOfTheValkyrie()
+		{
+			const string rulebookName = "Flight of the Valkyrie";
+			const string description =
+				"When [creature] is played, fill all open slots on your side of the field with 1/1 Norse Warriors.";
+
+			// setup ability
+			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, description, 3);
+
 			List<DialogueEvent.Line> lines = new List<DialogueEvent.Line>();
 			DialogueEvent.Line line = new DialogueEvent.Line
 			{
-				text = "When played, this creature will create a copy of itself in an open space on your side of the field."
+				text = "When this creature is played, fill all open slots on your side of the field with 1/1 Norse Warriors."
 			};
 			lines.Add(line);
 			info.abilityLearnedDialogue = new DialogueEvent.LineSet(lines);
 
-			Texture2D defaultTexture = SigilUtils.GetTexture2DFromBundle("ability_split");
+			// get and load artwork
+			Texture2D sigilTex = SigilUtils.GetTexture2DFromBundle("ability_flight_of_the_valkyrie.png");
 
-			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
 			// set ability to behavior class
-			NewAbility newAbility = new NewAbility(info, typeof(Split), defaultTexture, abIds);
-			Split.ability = newAbility.ability;
+			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
+			NewAbility newAbility = new NewAbility(info, typeof(FlightOfTheValkyrie), sigilTex, abIds);
+			FlightOfTheValkyrie.ability = newAbility.ability;
 
 			return newAbility;
 		}
 	}
 
-	public class Split : CustomAbilityBehaviour
+	public class FlightOfTheValkyrie : CustomAbilityBehaviour
 	{
 		public override bool RespondsToResolveOnBoard()
 		{
@@ -58,17 +72,17 @@ namespace SigilADay_julianperge
 			base.Card.Anim.StrongNegationEffect();
 			if (slotsWithCards.TrueForAll(slot => slot && slot.Card))
 			{
-				SigilADay_julianperge.Plugin.Log.LogDebug($"All slots are full, not spawning a copy of [{base.Card.Info.name}]");
+				Log.LogDebug($"All slots are full, not spawning a copy of [{base.Card.Info.name}]");
 			}
 			else
 			{
-				SigilADay_julianperge.Plugin.Log.LogDebug("Starting copy sequence");
+				Log.LogDebug("Starting copy sequence");
 				// now only check those filtered cards that have terrain traits
 				foreach (var slot in slotsWithCards.Where(slot => slot && !slot.Card))
 				{
 					// >= 0 AND <= 2
 					string cardToSpawn = base.Card.Info.name;
-					SigilADay_julianperge.Plugin.Log.LogDebug($"-> Spawning [{cardToSpawn}] in slot [{slot.name}]");
+					Log.LogDebug($"-> Spawning [{cardToSpawn}] in slot [{slot.name}]");
 					PlayableCard copy = CardSpawner.SpawnPlayableCard(CardLoader.GetCardByName(cardToSpawn));
 					yield return Singleton<BoardManager>.Instance.ResolveCardOnBoard(copy, slot);
 					break;

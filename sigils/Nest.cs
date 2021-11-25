@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using APIPlugin;
-using CardLoaderPlugin.lib;
 using DiskCardGame;
-using SigilADay.lib;
+using SigilADay_julianperge.lib;
 using UnityEngine;
 
-namespace SigilADay
+namespace SigilADay_julianperge
 {
 	public partial class Plugin
 	{
@@ -27,10 +26,10 @@ namespace SigilADay
 			info.abilityLearnedDialogue = new DialogueEvent.LineSet(lines);
 			
 			// get and load artwork
-			Texture2D sigilTex = SigilUtils.LoadImageAndGetTexture("ability_nest.png");
+			Texture2D sigilTex = SigilUtils.GetTexture2DFromBundle("ability_nest");
 
 			// set ability to behavior class
-			var abIds = AbilityIdentifier.GetAbilityIdentifier(PluginGuid, info.rulebookName);
+			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
 			NewAbility newAbility = new NewAbility(info, typeof(Nest), sigilTex, abIds);
 			Nest.ability = newAbility.ability;
 

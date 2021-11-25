@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using APIPlugin;
 using BepInEx;
 using DiskCardGame;
 using UnityEngine;
 using static System.IO.File;
 
-namespace SigilADay.lib
+namespace SigilADay_julianperge.lib
 {
 	public static class SigilUtils
 	{
@@ -25,11 +26,24 @@ namespace SigilADay.lib
 			return info;
 		}
 
+		public static Texture2D GetTexture2DFromBundle(string asset)
+		{
+			return SigilADay_julianperge.Plugin.ArtworkAssets.LoadAsset<Texture2D>(asset);
+		}
+
+		public static AbilityIdentifier GetAbilityId(string rulebookName)
+		{
+			return AbilityIdentifier.GetAbilityIdentifier(SigilADay_julianperge.Plugin.PluginGuid, rulebookName);
+		}
+
+		public static string GetFullPathOfFile(string fileToLookFor)
+		{
+			return Directory.GetFiles(Paths.PluginPath, fileToLookFor, SearchOption.AllDirectories)[0];
+		}
+
 		public static byte[] ReadArtworkFileAsBytes(string nameOfCardArt)
 		{
-			return ReadAllBytes(
-				Directory.GetFiles(Paths.PluginPath, nameOfCardArt, SearchOption.AllDirectories)[0]
-			);
+			return ReadAllBytes(GetFullPathOfFile(nameOfCardArt));
 		}
 
 		public static Texture2D LoadImageAndGetTexture(string nameOfCardArt)
