@@ -24,9 +24,10 @@ namespace SigilADay_julianperge
 			};
 			lines.Add(line);
 			info.abilityLearnedDialogue = new DialogueEvent.LineSet(lines);
-			
+
 			// get and load artwork
-			Texture2D sigilTex = SigilUtils.GetTexture2DFromBundle("ability_nest");
+			Texture2D sigilTex = new Texture2D(2, 2);
+			sigilTex.LoadImage(Properties.Resources.ability_nest);
 
 			// set ability to behavior class
 			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
@@ -42,7 +43,7 @@ namespace SigilADay_julianperge
 		private List<CardInfo> _originalDeckCards;
 
 		// todo: list of cards that are mediocre/decent
-		private static readonly List<CardInfo> TutorCards = new()
+		private static readonly List<CardInfo> TutorCards = new List<CardInfo>
 		{
 			CardLoader.GetCardByName("Tail_Insect"),
 			CardLoader.GetCardByName("RingWorm"),

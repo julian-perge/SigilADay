@@ -13,7 +13,8 @@ namespace SigilADay
 	{
 		private void AddNorseWarrior()
 		{
-			Texture2D defaultTexture = SigilUtils.LoadImageAndGetTexture("card_norse_warrior.png");
+			Texture2D defaultTexture = new Texture2D(2,2);
+			defaultTexture.LoadImage(SigilADay_julianperge.Properties.Resources.card_norse_warrior);
 
 			const string name = "NorseWarrior"; 
 			const string displayName = "Norse Warrior";
@@ -43,7 +44,8 @@ namespace SigilADay
 			info.abilityLearnedDialogue = new DialogueEvent.LineSet(lines);
 
 			// get and load artwork
-			Texture2D sigilTex = SigilUtils.GetTexture2DFromBundle("ability_flight_of_the_valkyrie.png");
+			Texture2D sigilTex = new Texture2D(2,2);
+			sigilTex.LoadImage(SigilADay_julianperge.Properties.Resources.ability_fotv);
 
 			// set ability to behavior class
 			var abIds = SigilUtils.GetAbilityId(info.rulebookName);

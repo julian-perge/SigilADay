@@ -65,7 +65,7 @@ namespace SigilADay_julianperge.Properties {
         /// </summary>
         public static byte[] ability_excavator {
             get {
-                object obj = ResourceManager.GetObject("ability_thickshell", resourceCulture);
+                object obj = ResourceManager.GetObject("ability_excavator", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -106,6 +106,16 @@ namespace SigilADay_julianperge.Properties {
         public static byte[] ability_thickshell {
             get {
                 object obj = ResourceManager.GetObject("ability_thickshell", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] card_norse_warrior {
+            get {
+                object obj = ResourceManager.GetObject("card_norse_warrior", resourceCulture);
                 return ((byte[])(obj));
             }
         }

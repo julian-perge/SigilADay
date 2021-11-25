@@ -3,10 +3,11 @@
   <PropertyGroup>
     <Description>Collection of custom sigils</Description>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <LangVersion>9.0</LangVersion>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>SigilADay_julianperge</AssemblyName>
     <RootNamespace>SigilADay_julianperge</RootNamespace>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -45,10 +46,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="Resources\" />
   </ItemGroup>
 
   <Target Name="CopyDLLs" AfterTargets="Build">
