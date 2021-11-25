@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.0
+- Miasma: When this creature dies, spawn a `Greater Smoke` creature in its place.
+  * A `Greater Smoke` is defined as: 1/3 w/ Quadruple Bones
+
 ## v1.1.0 
 - Updated to use API v1.12.1
 - Corrected logic for checking for if PlayerSlots are full in `Split` ability.

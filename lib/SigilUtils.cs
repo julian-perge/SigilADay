@@ -26,6 +26,19 @@ namespace SigilADay_julianperge.lib
 			return info;
 		}
 
+		public static DialogueEvent.LineSet SetAbilityInfoDialogue(string dialogue)
+		{
+			return new DialogueEvent.LineSet(
+				new List<DialogueEvent.Line>()
+				{
+					new DialogueEvent.Line()
+					{
+						text = dialogue
+					}
+				}
+			);
+		}
+
 		public static AbilityIdentifier GetAbilityId(string rulebookName)
 		{
 			return AbilityIdentifier.GetAbilityIdentifier(SigilADay_julianperge.Plugin.PluginGuid, rulebookName);
