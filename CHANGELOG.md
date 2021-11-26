@@ -3,7 +3,8 @@
 ## v1.2.0
 - `Miasma`: When this creature dies, spawn a `Greater Smoke` creature in its place.
   * A `Greater Smoke` is defined as: 1/3 with `QuadrupleBones` ability.
-- Removed abstract class `CustomAbilityBehavior` due to static reference issues where the only NewAbility that can be added to cards is the last one created. 
+- Removed abstract class `CustomAbilityBehavior` due to static reference issues where the only NewAbility that can be added to cards is the last one created.
+- - Changed list of cards in `Nest` ability that can be tutored for. New cards are: `Tail_Bird`, `Tail_Furry`,`Tail_Insect`,`Boulder`
 
 ## v1.1.0 
 - Updated to use API v1.12.1

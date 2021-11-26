@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using APIPlugin;
 using DiskCardGame;
@@ -47,12 +48,12 @@ namespace SigilADay_julianperge
 		private List<CardInfo> _originalDeckCards;
 
 		// todo: list of cards that are mediocre/decent
-		private static readonly List<CardInfo> TutorCards = new List<CardInfo>
+		private static readonly List<CardInfo> TutorCards = new()
 		{
+			CardLoader.GetCardByName("Tail_Bird"),
+			CardLoader.GetCardByName("Tail_Furry"),
 			CardLoader.GetCardByName("Tail_Insect"),
-			CardLoader.GetCardByName("RingWorm"),
-			CardLoader.GetCardByName("Bee"),
-			CardLoader.GetCardByName("RingWorm")
+			CardLoader.GetCardByName("Boulder")
 		};
 
 		public override bool RespondsToTakeDamage(PlayableCard source)

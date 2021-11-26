@@ -18,8 +18,7 @@ namespace SigilADay_julianperge
 
 			info.abilityLearnedDialogue = SigilUtils.SetAbilityInfoDialogue(dialogue);
 
-			Texture2D tex = new Texture2D(2, 2);
-			tex.LoadImage(SigilADay_julianperge.Properties.Resources.ability_miasma);
+			Texture2D tex = SigilUtils.LoadTextureFromResource(Properties.Resources.ability_miasma);
 
 			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
 			// set ability to behavior class
@@ -47,6 +46,8 @@ namespace SigilADay_julianperge
 
 			var greaterSmoke = CardSpawner.SpawnPlayableCard(CardLoader.GetCardByName("Smoke_Improved"));
 
+			yield return new WaitForSeconds(1f);
+			
 			yield return Singleton<BoardManager>.Instance.ResolveCardOnBoard(greaterSmoke, base.Card.Slot);
 
 			yield return base.LearnAbility(0.5f);

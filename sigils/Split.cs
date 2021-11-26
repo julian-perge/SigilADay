@@ -29,10 +29,8 @@ namespace SigilADay_julianperge
 			lines.Add(line);
 			info.abilityLearnedDialogue = new DialogueEvent.LineSet(lines);
 
-			Texture2D defaultTexture = new Texture2D(2, 2);
-			defaultTexture.LoadImage(SigilADay_julianperge.Properties.Resources.ability_split);
-
-
+			Texture2D defaultTexture = SigilUtils.LoadTextureFromResource(Properties.Resources.ability_split);
+			
 			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
 			// set ability to behavior class
 			NewAbility newAbility = new NewAbility(info, typeof(Split), defaultTexture, abIds);

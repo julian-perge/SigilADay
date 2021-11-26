@@ -39,6 +39,13 @@ namespace SigilADay_julianperge.lib
 			);
 		}
 
+		public static Texture2D LoadTextureFromResource(byte[] resourceFile)
+		{
+			var texture = new Texture2D(2, 2);
+			texture.LoadImage(resourceFile);
+			return texture;
+		}
+
 		public static AbilityIdentifier GetAbilityId(string rulebookName)
 		{
 			return AbilityIdentifier.GetAbilityIdentifier(SigilADay_julianperge.Plugin.PluginGuid, rulebookName);
