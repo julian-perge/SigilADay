@@ -5,13 +5,17 @@ This was forked from Cyantist's [repo](https://github.com/ScottWilson0903/SigilA
 
 ## Sigils so far
 ### Day 1
-- Excavator: When played, remove all Terrain cards on your side of the field. For each card removed, place a Squirrel in your hand.
-- Nest: When attacked, this creature will tutor for a card from a specific set of cards that is not your main deck.
+- Excavator: When played, remove all `Terrain` cards on your side of the field. For each card removed, place a `Squirrel` in your hand.
+- Nest: When attacked, this creature will `Tutor` for a card from a specific set of cards that is not your main deck.
 - Split: When played, this creature will create a copy of itself in an open space on your side of the field.
 
 ### Day 2
-- Flight Of The Valkyrie: When the creature is played, fill all open slots on your side of the field with 1/1 Norse Warriors
-  * Norse Warriors are defined as 1/1 normal cards.
+- Flight Of The Valkyrie: When the creature is played, fill all open slots on your side of the field with 1/1 `Norse Warrior`s
+  * `Norse Warriors` are defined as: 1/1 with `Brittle` ability.
+
+### Day 3
+- Miasma - When this creature dies, spawn a Greater Smoke creature in its place.
+  * A `Greater Smoke` is defined as: 1/3 with `QuadrupleBones` ability. 
 
 ## Installation (automated)
 This is the recommended way to install the API on the game.
