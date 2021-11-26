@@ -45,7 +45,7 @@ namespace SigilADay_julianperge
 		{
 			yield return base.PreSuccessfulTriggerSequence();
 
-			var greaterSmoke = CardSpawner.SpawnPlayableCard(CardLoader.GetCardByName("Greater_Smoke"));
+			var greaterSmoke = CardSpawner.SpawnPlayableCard(CardLoader.GetCardByName("Smoke_Improved"));
 
 			yield return Singleton<BoardManager>.Instance.ResolveCardOnBoard(greaterSmoke, base.Card.Slot);
 
