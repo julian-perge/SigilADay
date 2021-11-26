@@ -12,7 +12,7 @@ namespace SigilADay_julianperge
 {
 	public partial class Plugin
 	{
-		public NewAbility AddSplit()
+		private NewAbility AddSplit()
 		{
 			// setup ability
 			const string rulebookName = "Split";
@@ -29,7 +29,7 @@ namespace SigilADay_julianperge
 			lines.Add(line);
 			info.abilityLearnedDialogue = new DialogueEvent.LineSet(lines);
 
-			Texture2D defaultTexture = new Texture2D(2,2);
+			Texture2D defaultTexture = new Texture2D(2, 2);
 			defaultTexture.LoadImage(SigilADay_julianperge.Properties.Resources.ability_split);
 
 
@@ -42,8 +42,12 @@ namespace SigilADay_julianperge
 		}
 	}
 
-	public class Split : CustomAbilityBehaviour
+	public class Split : AbilityBehaviour
 	{
+		public override Ability Ability => ability;
+
+		public static Ability ability;
+
 		public override bool RespondsToResolveOnBoard()
 		{
 			return true;
@@ -60,7 +64,8 @@ namespace SigilADay_julianperge
 			base.Card.Anim.StrongNegationEffect();
 			if (slotsWithCards.TrueForAll(slot => slot && slot.Card))
 			{
-				SigilADay_julianperge.Plugin.Log.LogDebug($"All slots are full, not spawning a copy of [{base.Card.Info.name}]");
+				SigilADay_julianperge.Plugin.Log.LogDebug(
+					$"All slots are full, not spawning a copy of [{base.Card.Info.name}]");
 			}
 			else
 			{

@@ -11,11 +11,10 @@ namespace SigilADay_julianperge
 		private NewAbility AddMiasma()
 		{
 			// setup ability
-			const string rulebookName = "Excavator";
+			const string rulebookName = "Miasma";
 			const string desc = "When [creature] dies, spawn a Greater Smoke creature in its place.";
 			string dialogue = desc.Replace("[creature]", "this creature");
 			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, desc);
-
 
 			info.abilityLearnedDialogue = SigilUtils.SetAbilityInfoDialogue(dialogue);
 
@@ -31,8 +30,11 @@ namespace SigilADay_julianperge
 		}
 	}
 
-	class Miasma : CustomAbilityBehaviour
+	public class Miasma : AbilityBehaviour
 	{
+		public override Ability Ability => ability;
+
+		public static Ability ability;
 
 		public override bool RespondsToDie(bool wasSacrifice, PlayableCard killer)
 		{
@@ -50,6 +52,5 @@ namespace SigilADay_julianperge
 			yield return base.LearnAbility(0.5f);
 			yield break;
 		}
-
 	}
 }

@@ -7,16 +7,16 @@ using SigilADay_julianperge.lib;
 using UnityEngine;
 using static SigilADay_julianperge.Plugin;
 
-namespace SigilADay
+namespace SigilADay_julianperge
 {
 	public partial class Plugin
 	{
 		private void AddNorseWarrior()
 		{
-			Texture2D defaultTexture = new Texture2D(2,2);
+			Texture2D defaultTexture = new Texture2D(2, 2);
 			defaultTexture.LoadImage(SigilADay_julianperge.Properties.Resources.card_norse_warrior);
 
-			const string name = "NorseWarrior"; 
+			const string name = "NorseWarrior";
 			const string displayName = "Norse Warrior";
 			const string desc = "Odin would be proud!";
 
@@ -28,6 +28,8 @@ namespace SigilADay
 
 		private NewAbility AddFlightOfTheValkyrie()
 		{
+			AddNorseWarrior();
+
 			const string rulebookName = "Flight of the Valkyrie";
 			const string description =
 				"When [creature] is played, fill all open slots on your side of the field with 1/1 Norse Warriors.";
@@ -44,7 +46,7 @@ namespace SigilADay
 			info.abilityLearnedDialogue = new DialogueEvent.LineSet(lines);
 
 			// get and load artwork
-			Texture2D sigilTex = new Texture2D(2,2);
+			Texture2D sigilTex = new Texture2D(2, 2);
 			sigilTex.LoadImage(SigilADay_julianperge.Properties.Resources.ability_fotv);
 
 			// set ability to behavior class
@@ -56,8 +58,12 @@ namespace SigilADay
 		}
 	}
 
-	public class FlightOfTheValkyrie : CustomAbilityBehaviour
+	public class FlightOfTheValkyrie : AbilityBehaviour
 	{
+		public override Ability Ability => ability;
+
+		public static Ability ability;
+
 		public override bool RespondsToResolveOnBoard()
 		{
 			return true;

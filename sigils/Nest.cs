@@ -38,8 +38,12 @@ namespace SigilADay_julianperge
 		}
 	}
 
-	public class Nest : CustomAbilityBehaviour
+	public class Nest : AbilityBehaviour
 	{
+		public override Ability Ability => ability;
+
+		public static Ability ability;
+
 		private List<CardInfo> _originalDeckCards;
 
 		// todo: list of cards that are mediocre/decent

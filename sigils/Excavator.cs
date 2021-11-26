@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using APIPlugin;
 using DiskCardGame;
@@ -18,7 +17,7 @@ namespace SigilADay_julianperge
 			const string desc =
 				"When played, remove all Terrain cards on your side of the field. For each card removed, place a Squirrel in your hand.";
 			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, desc);
-			
+
 			List<DialogueEvent.Line> lines = new List<DialogueEvent.Line>();
 			DialogueEvent.Line line = new DialogueEvent.Line
 			{
@@ -27,7 +26,7 @@ namespace SigilADay_julianperge
 			lines.Add(line);
 			info.abilityLearnedDialogue = new DialogueEvent.LineSet(lines);
 
-			Texture2D tex = new Texture2D(2,2);
+			Texture2D tex = new Texture2D(2, 2);
 			tex.LoadImage(SigilADay_julianperge.Properties.Resources.ability_excavator);
 
 			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
@@ -39,8 +38,12 @@ namespace SigilADay_julianperge
 		}
 	}
 
-	public class Excavator : CustomAbilityBehaviour
+	public class Excavator : AbilityBehaviour
 	{
+		public override Ability Ability => ability;
+
+		public static Ability ability;
+
 		public override bool RespondsToResolveOnBoard()
 		{
 			return true;
