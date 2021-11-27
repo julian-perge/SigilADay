@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using APIPlugin;
 using BepInEx;
@@ -7,7 +6,7 @@ using DiskCardGame;
 using UnityEngine;
 using static System.IO.File;
 
-namespace SigilADay_julianperge.lib
+namespace SigilADay_julianperge
 {
 	public static class SigilUtils
 	{

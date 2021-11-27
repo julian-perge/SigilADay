@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using APIPlugin;
 using DiskCardGame;
-using SigilADay_julianperge.lib;
 using UnityEngine;
+using Resources = SigilADay_julianperge.Properties.Resources;
 
 namespace SigilADay_julianperge
 {
@@ -18,7 +17,7 @@ namespace SigilADay_julianperge
 				"When played, remove all Terrain cards on your side of the field. For each card removed, place a Squirrel in your hand.";
 			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true);
 
-			Texture2D tex = SigilUtils.LoadTextureFromResource(SigilADay_julianperge.Properties.Resources.ability_excavator);
+			Texture2D tex = SigilUtils.LoadTextureFromResource(Resources.ability_excavator);
 
 			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
 			NewAbility newAbility = new NewAbility(info, typeof(Excavator), tex, abIds);

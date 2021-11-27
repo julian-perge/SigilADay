@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using APIPlugin;
 using DiskCardGame;
-using SigilADay_julianperge.lib;
 using UnityEngine;
 using Resources = SigilADay_julianperge.Properties.Resources;
 
@@ -47,18 +46,17 @@ namespace SigilADay_julianperge
 		public override IEnumerator OnTurnEnd(bool playerTurnEnd)
 		{
 			yield return base.PreSuccessfulTriggerSequence();
-			PlayableCard pCard = base.Card;
-			CardSlot baseSlot = pCard.slot;
 			
-			CardSlot toLeft = Singleton<BoardManager>.Instance.GetAdjacent(baseSlot, true);
-			CardSlot toRight = Singleton<BoardManager>.Instance.GetAdjacent(baseSlot, false);
+			CardSlot toLeft = Singleton<BoardManager>.Instance.GetAdjacent(base.Card.slot, true);
+			CardSlot toRight = Singleton<BoardManager>.Instance.GetAdjacent(base.Card.slot, false);
 			int healthToSteal = 0;
 			
 			bool toLeftHasMatchingTribe = AdjacentSlotHasMatchingTribe(toLeft);
 			bool toRightHasMatchingTribe = AdjacentSlotHasMatchingTribe(toRight);
 			
-			// O O [X] X
-			// [X] O O O
+			// [X] = card with this ability
+			// O O [X] X, toLeft will not be null, but card will be. toRight will not be null and card will not be null
+			// [X] O O O, toLeft will be null since no slot exists after the farthest left slot
 
 			if (toLeftHasMatchingTribe)
 			{
@@ -82,7 +80,7 @@ namespace SigilADay_julianperge
 
 			yield return new WaitForSeconds(0.5f);
 			// Add health adjustment to card with Cannibal
-			pCard.AddTemporaryMod(mods);
+			base.Card.AddTemporaryMod(mods);
 
 			yield return base.LearnAbility(0.5f);
 			yield break;
@@ -92,6 +90,7 @@ namespace SigilADay_julianperge
 		{
 			Singleton<ViewManager>.Instance.SwitchToView(View.Board, false, false);
 			yield return new WaitForSeconds(1f);
+			// friendly cards cannot attack other friendly slots so this animation looks a little goofy
 			base.Card.Anim.PlayAttackAnimation(base.Card.IsFlyingAttackingReach(), friendlySlot, null);
 			yield return new WaitForSeconds(0.5f);
 			yield return friendlySlot.Card.TakeDamage(1, base.Card);

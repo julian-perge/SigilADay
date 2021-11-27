@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using APIPlugin;
 using DiskCardGame;
-using SigilADay_julianperge.lib;
 using UnityEngine;
+using Resources = SigilADay_julianperge.Properties.Resources;
 
 namespace SigilADay_julianperge
 {
@@ -19,7 +18,7 @@ namespace SigilADay_julianperge
 			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true, 3);
 
 			// get and load artwork
-			Texture2D sigilTex = SigilUtils.LoadTextureFromResource(Properties.Resources.ability_nest);
+			Texture2D sigilTex = SigilUtils.LoadTextureFromResource(Resources.ability_nest);
 
 			var abId = SigilUtils.GetAbilityId(info.rulebookName);
 			

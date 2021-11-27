@@ -1,8 +1,8 @@
-﻿using APIPlugin;
+﻿using System.Collections;
+using APIPlugin;
 using DiskCardGame;
-using SigilADay_julianperge.lib;
-using System.Collections;
 using UnityEngine;
+using Resources = SigilADay_julianperge.Properties.Resources;
 
 namespace SigilADay_julianperge
 {
@@ -16,7 +16,7 @@ namespace SigilADay_julianperge
 			
 			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true, 2);
 			
-			Texture2D tex = SigilUtils.LoadTextureFromResource(Properties.Resources.ability_miasma);
+			Texture2D tex = SigilUtils.LoadTextureFromResource(Resources.ability_miasma);
 
 			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
 			
@@ -44,11 +44,11 @@ namespace SigilADay_julianperge
 		{
 			yield return base.PreSuccessfulTriggerSequence();
 
-			var greaterSmoke = CardSpawner.SpawnPlayableCard(CardLoader.GetCardByName("Smoke_Improved"));
+			var greaterSmoke = CardLoader.GetCardByName("Smoke_Improved");
 
 			yield return new WaitForSeconds(1f);
 			
-			yield return Singleton<BoardManager>.Instance.ResolveCardOnBoard(greaterSmoke, base.Card.Slot);
+			yield return Singleton<BoardManager>.Instance.CreateCardInSlot(greaterSmoke, base.Card.Slot);
 
 			yield return base.LearnAbility(0.5f);
 			yield break;

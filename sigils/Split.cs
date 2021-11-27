@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using APIPlugin;
 using DiskCardGame;
-using SigilADay_julianperge.lib;
 using UnityEngine;
+using Resources = SigilADay_julianperge.Properties.Resources;
 
 // using UnityEngine.UIElements;
 
@@ -20,7 +19,7 @@ namespace SigilADay_julianperge
 				"When played, [creature] will create a copy of itself in an open space on your side of the field.";
 			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true);
 
-			Texture2D defaultTexture = SigilUtils.LoadTextureFromResource(Properties.Resources.ability_split);
+			Texture2D defaultTexture = SigilUtils.LoadTextureFromResource(Resources.ability_split);
 			
 			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
 			NewAbility newAbility = new NewAbility(info, typeof(Split), defaultTexture, abIds);
@@ -54,18 +53,18 @@ namespace SigilADay_julianperge
 			base.Card.Anim.StrongNegationEffect();
 			if (slotsWithCards.TrueForAll(slot => slot && slot.Card))
 			{
-				SigilADay_julianperge.Plugin.Log.LogDebug(
+				Plugin.Log.LogDebug(
 					$"All slots are full, not spawning a copy of [{base.Card.Info.name}]");
 			}
 			else
 			{
-				SigilADay_julianperge.Plugin.Log.LogDebug("Starting copy sequence");
+				Plugin.Log.LogDebug("Starting copy sequence");
 				// now only check those filtered cards that have terrain traits
 				foreach (var slot in slotsWithCards.Where(slot => slot && !slot.Card))
 				{
 					// >= 0 AND <= 2
 					string cardToSpawn = base.Card.Info.name;
-					SigilADay_julianperge.Plugin.Log.LogDebug($"-> Spawning [{cardToSpawn}] in slot [{slot.name}]");
+					Plugin.Log.LogDebug($"-> Spawning [{cardToSpawn}] in slot [{slot.name}]");
 					PlayableCard copy = CardSpawner.SpawnPlayableCard(CardLoader.GetCardByName(cardToSpawn));
 					yield return Singleton<BoardManager>.Instance.ResolveCardOnBoard(copy, slot);
 					break;

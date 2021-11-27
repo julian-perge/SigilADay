@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using APIPlugin;
 using DiskCardGame;
-using SigilADay_julianperge.lib;
 using UnityEngine;
 using static SigilADay_julianperge.Plugin;
+using Resources = SigilADay_julianperge.Properties.Resources;
 
 namespace SigilADay_julianperge
 {
@@ -14,7 +14,7 @@ namespace SigilADay_julianperge
 		private void AddNorseWarrior()
 		{
 			Texture2D defaultTexture =
-				SigilUtils.LoadTextureFromResource(SigilADay_julianperge.Properties.Resources.card_norse_warrior);
+				SigilUtils.LoadTextureFromResource(Resources.card_norse_warrior);
 
 			const string name = "NorseWarrior";
 			const string displayName = "Norse Warrior";
@@ -38,7 +38,7 @@ namespace SigilADay_julianperge
 			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true, 3);
 
 			// get and load artwork
-			Texture2D sigilTex = SigilUtils.LoadTextureFromResource(SigilADay_julianperge.Properties.Resources.ability_fotv);
+			Texture2D sigilTex = SigilUtils.LoadTextureFromResource(Resources.ability_fotv);
 
 			var abId = SigilUtils.GetAbilityId(info.rulebookName);
 			
