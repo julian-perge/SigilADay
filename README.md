@@ -25,6 +25,9 @@ This was forked from Cyantist's [repo](https://github.com/ScottWilson0903/SigilA
 
 # Changelog
 
+## v1.4.1
+- Fixed `Cannibal` ability property getter to now correctly return the static field.
+
 ## v1.4.0
 - Created `Prospect` ability;
 - Created `Golden Nugget` ability;

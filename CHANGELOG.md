@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.4.1
+- Fixed `Cannibal` property getter for the ability to now correctly return the static ability field.
+
 ## v1.4.0
 - `Prospect`: When this attacks another creature, that creature turns into a Golden Nugget. 1 gold tooth is found upon destroying the Golden Nugget.
 - `Golden Nugget`: When this creature perishes, gain 1 gold tooth.
