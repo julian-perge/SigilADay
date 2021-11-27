@@ -26,7 +26,7 @@ namespace SigilADay_julianperge
 			if (withDialogue)
 			{
 				info.abilityLearnedDialogue = SetAbilityInfoDialogue(
-					rulebookDescription.Replace("[creature]", "this creature")
+					rulebookDescription.Replace("[creature]", "a card bearing this sigil")
 				);
 			}
 

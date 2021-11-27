@@ -16,7 +16,7 @@ namespace SigilADay_julianperge
 			// setup ability
 			const string rulebookName = "Split";
 			const string rulebookDescription =
-				"When played, [creature] will create a copy of itself in an open space on your side of the field.";
+				"When [creature] is played, create a copy an open space on your side of the field.";
 			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true);
 
 			Texture2D defaultTexture = SigilUtils.LoadTextureFromResource(Resources.ability_split);

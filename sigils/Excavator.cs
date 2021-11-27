@@ -14,7 +14,7 @@ namespace SigilADay_julianperge
 			// setup ability
 			const string rulebookName = "Excavator";
 			const string rulebookDescription =
-				"When played, remove all Terrain cards on your side of the field. For each card removed, place a Squirrel in your hand.";
+				"When [creature] is played, remove all Terrain cards on your side of the field. For each card removed, place a Squirrel in your hand.";
 			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true);
 
 			Texture2D tex = SigilUtils.LoadTextureFromResource(Resources.ability_excavator);

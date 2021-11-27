@@ -6,34 +6,40 @@ This was forked from Cyantist's [repo](https://github.com/ScottWilson0903/SigilA
 ## Sigils so far
 ### Day 1
 - Excavator: When played, remove all `Terrain` cards on your side of the field. For each card removed, place a `Squirrel` in your hand.
-- Nest: When attacked, this creature will `Tutor` for a card from a specific set of cards that is not your main deck.
-- Split: When played, this creature will create a copy of itself in an open space on your side of the field.
+- Nest: When [creature] is struck, you may select a card from a specific draw pile.
+  * Cards are: `Tail_Bird`, `Tail_Furry`,`Tail_Insect`,`Boulder`
+  * These cards cannot currently be changed at the moment (possible feature in future)
+- Split: When [creature] is played, create a copy an open space on your side of the field.
 
 ### Day 2
-- Flight Of The Valkyrie: When the creature is played, fill all open slots on your side of the field with 1/1 `Norse Warrior`s
-  * `Norse Warriors` are defined as: 1/1 with `Brittle` ability.
+- Flight Of The Valkyrie: When [creature] is played, fill all open slots on your side of the field with 1/1 `Norse Warrior`s.
+  * `Norse Warriors` is defined as: 1 Power, 1 Health,`Brittle`.
 
 ### Day 3
-- Miasma - When this creature dies, spawn a Greater Smoke creature in its place.
-  * A `Greater Smoke` is defined as: 1/3 with `QuadrupleBones` ability.
+- Miasma - When [creature] dies, spawn a Greater Smoke in its place.
+  * A `Greater Smoke` is defined as: 1 Power, 3 Health, `QuadrupleBones`.
+
+### Day 4
+- `Prospect`: When [creature] damages another creature, that creature turns into a Golden Nugget. Gain 1 gold tooth upon destroying a Golden Nugget.
+- `Golden Nugget`: When [creature] dies, gain 1 gold tooth
 
 # Changelog
 
+## v1.4.0
+- Created `Prospect` ability;
+- Created `Golden Nugget` ability;
+- Updated descriptions of each ability.
+
 ## v1.3.0
-- `Cannibal`: At the end of your turn, this creature will steal 1 health from adjacent creatures of the same tribe. 
+- Created `Cannibal` ability;
 
 ## v1.2.0
-- `Miasma`: When this creature dies, spawn a `Greater Smoke` creature in its place.
-  * A `Greater Smoke` is defined as: 1/3 with `QuadrupleBones` ability.
 - Removed abstract class `CustomAbilityBehavior` due to static reference issues where the only NewAbility that can be added to cards is the last one created.
 - Changed list of cards in `Nest` ability that can be tutored for. New cards are: `Tail_Bird`, `Tail_Furry`,`Tail_Insect`,`Boulder`
 
 ## v1.1.0
 - Updated to use API v1.12.1
 - Corrected logic for checking for if PlayerSlots are full in `Split` ability.
-- Created `Flight of the Valkyrie` ability.
-  * When the creature is played, fill all open slots on your side of the field with 1/1 `Norse Warrior`s.
-  * `Norse Warrior` is defined as 1/1 with `Brittle` ability.
 - Added Resource image loading so that users no longer have to copy/paste the artwork folder. Images are built with the .dll
 
 ## Installation (automated)

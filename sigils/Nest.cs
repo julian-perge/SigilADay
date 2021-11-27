@@ -12,7 +12,7 @@ namespace SigilADay_julianperge
 		private NewAbility AddNest()
 		{
 			const string rulebookName = "Nest";
-			const string rulebookDescription = "When attacked, [creature] will tutor for a card from a specific draw pile.";
+			const string rulebookDescription = "When [creature] is struck, you may select a card from a specific draw pile.";
 
 			// setup ability
 			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true, 3);

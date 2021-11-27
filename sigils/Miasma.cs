@@ -12,7 +12,7 @@ namespace SigilADay_julianperge
 		{
 			// setup ability
 			const string rulebookName = "Miasma";
-			const string rulebookDescription = "When [creature] dies, spawn a Greater Smoke creature in its place.";
+			const string rulebookDescription = "When [creature] dies, spawn a Greater Smoke in its place.";
 			
 			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true, 2);
 			

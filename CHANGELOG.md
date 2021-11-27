@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.4.0
+- `Prospect`: When this attacks another creature, that creature turns into a Golden Nugget. 1 gold tooth is found upon destroying the Golden Nugget.
+- `Golden Nugget`: When this creature perishes, gain 1 gold tooth.
+- Added static imports for all the classes.
+- Updated descriptions of each ability.
+- Fixed namespace for SigilUtils.
+- Updated `CreateInfoWithDefaultSettings` method to now include setting the dialogue option.
+
 ## v1.3.0
 - `Cannibal`: At the end of your turn, this creature will steal 1 health from adjacent creatures of the same tribe.
 

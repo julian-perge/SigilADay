@@ -16,7 +16,7 @@ namespace SigilADay_julianperge
 			// setup ability
 			const string rulebookName = "Prospect";
 			const string rulebookDescription =
-				"When [creature] attacks another creature, that creature turns into a Gold Nugget. 1 gold tooth is found upon being destroyed.";
+				"When [creature] damages another creature, that creature turns into a Golden Nugget. Gain 1 gold tooth upon destroying a Golden Nugget.";
 			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription);
 
 			Texture2D tex = SigilUtils.LoadTextureFromResource(Resources.ability_prospect);
@@ -32,8 +32,8 @@ namespace SigilADay_julianperge
 		private NewAbility AddGoldenNugget()
 		{
 			const string rulebookName = "Golden Nugget";
-			const string rulebookDescription = "1 gold tooth is found upon being destroyed.";
-			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription);
+			const string rulebookDescription = "When [creature] dies, gain 1 gold tooth";
+			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true);
 
 			var abId = SigilUtils.GetAbilityId(info.rulebookName);
 
@@ -85,33 +85,19 @@ namespace SigilADay_julianperge
 	{
 		public static Ability ability;
 		public override Ability Ability => ability;
-		private List<CardSlot> slotsToSpawnNuggets = new();
-
-		public override bool RespondsToSlotTargetedForAttack(CardSlot slot, PlayableCard attacker)
-		{
-			Plugin.Log.LogDebug($"Attacker slot is equal to base.Card.Slot [{attacker.Slot == Card.Slot}]");
-			Plugin.Log.LogDebug($"Attacker [{attacker.Info.name}] slot.Card is valid [{(bool)slot.Card}]");
-			return attacker.Slot == Card.Slot && slot.Card;
-		}
-
-		public override IEnumerator OnSlotTargetedForAttack(CardSlot slot, PlayableCard attacker)
-		{
-			Plugin.Log.LogDebug($"Assigning [{slot.Card.Info.name}] slot to list of card slots");
-			// assign card being attacked to variable
-			if (!slot.Card.Info.name.Equals("GoldNugget"))
-			{
-				slotsToSpawnNuggets.Add(slot);
-			}
-			yield break;
-		}
 
 		public override bool RespondsToOtherCardDealtDamage(PlayableCard attacker, int amount, PlayableCard target)
 		{
-			return attacker == base.Card;
+			return attacker == base.Card && !target.Info.name.Equals("GoldNugget");
 		}
 
 		public override IEnumerator OnOtherCardDealtDamage(PlayableCard attacker, int amount, PlayableCard target)
 		{
+			yield return PreSuccessfulTriggerSequence();
+
+			Plugin.Log.LogDebug($"Setting view to board");
+			Singleton<ViewManager>.Instance.SwitchToView(View.Board, false, true);
+
 			if (!target.Dead)
 			{
 				Plugin.Log.LogDebug($"Killing card [{target.Info.name}]");
@@ -119,36 +105,17 @@ namespace SigilADay_julianperge
 				yield return new WaitForSeconds(0.25f);
 			}
 
-			yield break;
-		}
+			yield return new WaitForSeconds(0.25f);
+			AudioController.Instance.PlaySound3D("metal_object_hit#1", MixerGroup.TableObjectsSFX,
+				Vector3.zero, 1f, 0f, new AudioParams.Pitch(AudioParams.Pitch.Variation.Medium));
 
-		public override bool RespondsToAttackEnded()
-		{
-			return slotsToSpawnNuggets.Count > 0;
-		}
+			yield return new WaitForSeconds(0.25f);
+			yield return Singleton<BoardManager>.Instance.CreateCardInSlot(GoldenNugget.GetModdedNugget(), target.Slot);
 
-		public override IEnumerator OnAttackEnded()
-		{
-			yield return PreSuccessfulTriggerSequence();
-
-			Plugin.Log.LogDebug($"Setting view to board");
-			Singleton<ViewManager>.Instance.SwitchToView(View.Board, false, true);
-
-			foreach (var slot in slotsToSpawnNuggets)
-			{
-				// Plugin.Log.LogDebug($"Card [{card.Info.name}] is still alive? [{!card.Dead}]");
-
-				yield return new WaitForSeconds(0.25f);
-				AudioController.Instance.PlaySound3D("metal_object_hit#1", MixerGroup.TableObjectsSFX,
-					Vector3.zero, 1f, 0f, new AudioParams.Pitch(AudioParams.Pitch.Variation.Medium));
-
-				yield return new WaitForSeconds(0.25f);
-				yield return Singleton<BoardManager>.Instance.CreateCardInSlot(GoldenNugget.GetModdedNugget(), slot);
-			}
-			
-			slotsToSpawnNuggets.Clear();
 			yield return LearnAbility(0.5f);
 			yield return new WaitForSeconds(0.2f);
+
+			yield break;
 		}
 	}
 }
