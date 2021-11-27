@@ -22,6 +22,7 @@ namespace SigilADay_julianperge
 			AddFlightOfTheValkyrie();
 			AddMiasma();
 			AddNest();
+			AddProspect();
 			AddSplit();
 		}
 	}
