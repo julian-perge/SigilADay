@@ -7,7 +7,6 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>SigilADay_julianperge</AssemblyName>
     <RootNamespace>SigilADay_julianperge</RootNamespace>
-    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -51,7 +50,7 @@
   <Target Name="CopyDLLs" AfterTargets="Build">
     <Message Text="Executing CopyDLLs task" Importance="High" />
 
-    <Copy SourceFiles="$(TargetDir)$(ProjectName).dll;$(TargetDir)$(ProjectName).pdb" DestinationFolder="C:\Program Files (x86)\Steam\steamapps\common\Inscryption\BepInEx\plugins\" />
+    <Copy SourceFiles="$(TargetDir)$(ProjectName).dll;" DestinationFolder="C:\r2modman\Inscryption\profiles\Default\BepInEx\plugins\" />
     
     <Copy Condition="Exists('C:\DEVELOPER\InscryptionMods\lib\')" SourceFiles="$(TargetDir)$(ProjectName).dll" DestinationFolder="C:\DEVELOPER\InscryptionMods\lib\" />
 

@@ -19,6 +19,9 @@ This was forked from Cyantist's [repo](https://github.com/ScottWilson0903/SigilA
 
 # Changelog
 
+## v1.3.0
+- `Cannibal`: At the end of your turn, this creature will steal 1 health from adjacent creatures of the same tribe. 
+
 ## v1.2.0
 - `Miasma`: When this creature dies, spawn a `Greater Smoke` creature in its place.
   * A `Greater Smoke` is defined as: 1/3 with `QuadrupleBones` ability.

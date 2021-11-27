@@ -1,0 +1,108 @@
+﻿using System.Collections;
+using APIPlugin;
+using DiskCardGame;
+using SigilADay_julianperge.lib;
+using UnityEngine;
+using Resources = SigilADay_julianperge.Properties.Resources;
+
+namespace SigilADay_julianperge
+{
+	public partial class Plugin
+	{
+		private NewAbility AddCannibal()
+		{
+			// setup ability
+			const string rulebookName = "Cannibal";
+			const string rulebookDescription =
+				"At the end of your turn, [creature] will steal 1 health from adjacent creatures of the same tribe.";
+			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true);
+
+			Texture2D tex = SigilUtils.LoadTextureFromResource(Resources.ability_cannibal);
+
+			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
+			// set ability to behavior class
+			NewAbility newAbility = new NewAbility(info, typeof(Cannibal), tex, abIds);
+			Cannibal.ability = newAbility.ability;
+
+			return newAbility;
+		}
+	}
+
+	public class Cannibal : AbilityBehaviour
+	{
+		public static Ability ability;
+		
+		public override Ability Ability { get; }
+		
+		// 1. turn ending
+		// 2. does the card with this sigl respond?
+		// 3. Getting adjacent slots of the card with the sigil
+		// 4. do nothing on slots that have no cards
+
+		public override bool RespondsToTurnEnd(bool playerTurnEnd)
+		{
+			return playerTurnEnd && !base.Card.Dead;
+		}
+
+		public override IEnumerator OnTurnEnd(bool playerTurnEnd)
+		{
+			yield return base.PreSuccessfulTriggerSequence();
+			PlayableCard pCard = base.Card;
+			CardSlot baseSlot = pCard.slot;
+			
+			CardSlot toLeft = Singleton<BoardManager>.Instance.GetAdjacent(baseSlot, true);
+			CardSlot toRight = Singleton<BoardManager>.Instance.GetAdjacent(baseSlot, false);
+			int healthToSteal = 0;
+			
+			bool toLeftHasMatchingTribe = AdjacentSlotHasMatchingTribe(toLeft);
+			bool toRightHasMatchingTribe = AdjacentSlotHasMatchingTribe(toRight);
+			
+			// O O [X] X
+			// [X] O O O
+
+			if (toLeftHasMatchingTribe)
+			{
+				Plugin.Log.LogDebug($"ToLeft exists, adjCard [{toLeft.Card.Info.name}] in slot [{toLeft}] will have 1 health stolen");
+				healthToSteal++;
+				yield return FriendlyCardTakesDamage(toLeft);
+			}
+
+			if (toRightHasMatchingTribe)
+			{
+				Plugin.Log.LogDebug($"ToRight exists, adjCard [{toRight.Card.Info.name}] in slot [{toRight}] will have 1 health stolen");
+				healthToSteal++;
+				yield return FriendlyCardTakesDamage(toRight);
+			}
+
+			Plugin.Log.LogDebug($"Cannibal will steal [{healthToSteal}] from his friends!");
+			CardModificationInfo mods = new CardModificationInfo
+			{
+				healthAdjustment = healthToSteal
+			};
+
+			yield return new WaitForSeconds(0.5f);
+			// Add health adjustment to card with Cannibal
+			pCard.AddTemporaryMod(mods);
+
+			yield return base.LearnAbility(0.5f);
+			yield break;
+		}
+
+		private IEnumerator FriendlyCardTakesDamage(CardSlot friendlySlot)
+		{
+			Singleton<ViewManager>.Instance.SwitchToView(View.Board, false, false);
+			yield return new WaitForSeconds(1f);
+			base.Card.Anim.PlayAttackAnimation(base.Card.IsFlyingAttackingReach(), friendlySlot, null);
+			yield return new WaitForSeconds(0.5f);
+			yield return friendlySlot.Card.TakeDamage(1, base.Card);
+			yield return new WaitForSeconds(0.1f);
+		}
+
+		private bool AdjacentSlotHasMatchingTribe(CardSlot adjSlot)
+		{
+			return (adjSlot && adjSlot.Card) 
+			       && ((base.Card.Info.tribes.Count == 0 && adjSlot.Card.Info.tribes.Count == 0)
+			           || base.Card.Info.tribes.Exists(adjSlot.Card.Info.IsOfTribe));
+		}
+	}
+}

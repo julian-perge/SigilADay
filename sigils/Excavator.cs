@@ -14,24 +14,16 @@ namespace SigilADay_julianperge
 		{
 			// setup ability
 			const string rulebookName = "Excavator";
-			const string desc =
+			const string rulebookDescription =
 				"When played, remove all Terrain cards on your side of the field. For each card removed, place a Squirrel in your hand.";
-			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, desc);
+			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true);
 
-			List<DialogueEvent.Line> lines = new List<DialogueEvent.Line>();
-			DialogueEvent.Line line = new DialogueEvent.Line
-			{
-				text = "When played, remove all Terrain cards on your side of the field. For each card removed, place a Squirrel in your hand."
-			};
-			lines.Add(line);
-			info.abilityLearnedDialogue = new DialogueEvent.LineSet(lines);
-
-			Texture2D tex = new Texture2D(2, 2);
-			tex.LoadImage(SigilADay_julianperge.Properties.Resources.ability_excavator);
+			Texture2D tex = SigilUtils.LoadTextureFromResource(SigilADay_julianperge.Properties.Resources.ability_excavator);
 
 			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
-			// set ability to behavior class
 			NewAbility newAbility = new NewAbility(info, typeof(Excavator), tex, abIds);
+			
+			// set ability to behaviour class
 			Excavator.ability = newAbility.ability;
 
 			return newAbility;

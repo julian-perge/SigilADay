@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using APIPlugin;
 using BepInEx;
@@ -11,7 +12,7 @@ namespace SigilADay_julianperge.lib
 	public static class SigilUtils
 	{
 		public static AbilityInfo CreateInfoWithDefaultSettings(
-			string rulebookName, string rulebookDescription, int powerLevel = 0
+			string rulebookName, string rulebookDescription, bool withDialogue = false, int powerLevel = 0
 		)
 		{
 			AbilityInfo info = ScriptableObject.CreateInstance<AbilityInfo>();
@@ -22,6 +23,13 @@ namespace SigilADay_julianperge.lib
 			{
 				AbilityMetaCategory.Part1Modular, AbilityMetaCategory.Part1Rulebook
 			};
+
+			if (withDialogue)
+			{
+				info.abilityLearnedDialogue = SetAbilityInfoDialogue(
+					rulebookDescription.Replace("[creature]", "this creature")
+				);
+			}
 
 			return info;
 		}

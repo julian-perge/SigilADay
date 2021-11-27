@@ -13,26 +13,19 @@ namespace SigilADay_julianperge
 		private NewAbility AddNest()
 		{
 			const string rulebookName = "Nest";
-			const string description = "When attacked, [creature] will tutor for a card from a specific draw pile.";
+			const string rulebookDescription = "When attacked, [creature] will tutor for a card from a specific draw pile.";
 
 			// setup ability
-			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, description, 3);
-			
-			List<DialogueEvent.Line> lines = new List<DialogueEvent.Line>();
-			DialogueEvent.Line line = new DialogueEvent.Line
-			{
-				text = "When attacked, this creature will tutor for a card from a specific draw pile."
-			};
-			lines.Add(line);
-			info.abilityLearnedDialogue = new DialogueEvent.LineSet(lines);
+			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true, 3);
 
 			// get and load artwork
-			Texture2D sigilTex = new Texture2D(2, 2);
-			sigilTex.LoadImage(Properties.Resources.ability_nest);
+			Texture2D sigilTex = SigilUtils.LoadTextureFromResource(Properties.Resources.ability_nest);
 
-			// set ability to behavior class
-			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
-			NewAbility newAbility = new NewAbility(info, typeof(Nest), sigilTex, abIds);
+			var abId = SigilUtils.GetAbilityId(info.rulebookName);
+			
+			NewAbility newAbility = new NewAbility(info, typeof(Nest), sigilTex, abId);
+			
+			// set ability to behaviour class
 			Nest.ability = newAbility.ability;
 
 			return newAbility;

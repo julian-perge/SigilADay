@@ -16,24 +16,16 @@ namespace SigilADay_julianperge
 		{
 			// setup ability
 			const string rulebookName = "Split";
-			const string desc =
+			const string rulebookDescription =
 				"When played, [creature] will create a copy of itself in an open space on your side of the field.";
-			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, desc);
-
-			// lines
-			List<DialogueEvent.Line> lines = new List<DialogueEvent.Line>();
-			DialogueEvent.Line line = new DialogueEvent.Line
-			{
-				text = "When played, this creature will create a copy of itself in an open space on your side of the field."
-			};
-			lines.Add(line);
-			info.abilityLearnedDialogue = new DialogueEvent.LineSet(lines);
+			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true);
 
 			Texture2D defaultTexture = SigilUtils.LoadTextureFromResource(Properties.Resources.ability_split);
 			
 			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
-			// set ability to behavior class
 			NewAbility newAbility = new NewAbility(info, typeof(Split), defaultTexture, abIds);
+			
+			// set ability to behaviour class
 			Split.ability = newAbility.ability;
 
 			return newAbility;

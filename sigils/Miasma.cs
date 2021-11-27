@@ -12,17 +12,17 @@ namespace SigilADay_julianperge
 		{
 			// setup ability
 			const string rulebookName = "Miasma";
-			const string desc = "When [creature] dies, spawn a Greater Smoke creature in its place.";
-			string dialogue = desc.Replace("[creature]", "this creature");
-			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, desc);
-
-			info.abilityLearnedDialogue = SigilUtils.SetAbilityInfoDialogue(dialogue);
-
+			const string rulebookDescription = "When [creature] dies, spawn a Greater Smoke creature in its place.";
+			
+			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true, 2);
+			
 			Texture2D tex = SigilUtils.LoadTextureFromResource(Properties.Resources.ability_miasma);
 
 			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
-			// set ability to behavior class
+			
 			NewAbility newAbility = new NewAbility(info, typeof(Miasma), tex, abIds);
+			
+			// set ability to behaviour class
 			Miasma.ability = newAbility.ability;
 
 			return newAbility;
