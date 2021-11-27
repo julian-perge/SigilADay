@@ -8,7 +8,7 @@ namespace SigilADay_julianperge
 {
 	public partial class Plugin
 	{
-		private NewAbility AddCannibal()
+		private static NewAbility AddCannibal()
 		{
 			// setup ability
 			const string rulebookName = "Cannibal";
@@ -30,8 +30,8 @@ namespace SigilADay_julianperge
 	public class Cannibal : AbilityBehaviour
 	{
 		public static Ability ability;
-		
-		public override Ability Ability { get; }
+
+		public override Ability Ability => ability;
 		
 		// 1. turn ending
 		// 2. does the card with this sigl respond?
