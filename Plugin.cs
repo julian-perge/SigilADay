@@ -4,12 +4,13 @@ using BepInEx.Logging;
 namespace SigilADay_julianperge
 {
 	[BepInPlugin(PluginGuid, PluginName, PluginVersion)]
-	[BepInDependency("cyantist.inscryption.api", BepInDependency.DependencyFlags.HardDependency)]
+	[BepInDependency(APIGUID, BepInDependency.DependencyFlags.HardDependency)]
 	public partial class Plugin : BaseUnityPlugin
 	{
+		public const string APIGUID = "cyantist.inscryption.api";
 		public const string PluginGuid = "julianperge.inscryption.sigiladay";
 		private const string PluginName = "SigilADay_julianperge";
-		private const string PluginVersion = "1.4.0";
+		private const string PluginVersion = "1.6.0";
 
 		internal static ManualLogSource Log;
 
@@ -17,6 +18,8 @@ namespace SigilADay_julianperge
 		{
 			Log = base.Logger;
 
+			AddRandomEvolve();
+			// AddBelligerent();
 			AddCannibal();
 			AddExcavator();
 			AddFlightOfTheValkyrie();

@@ -16,6 +16,8 @@ namespace SigilADay_julianperge
 
 		private NewAbility AddRandomEvolve()
 		{ 
+			InitializeRandomEvolveCardListConfig();
+			
 			// setup ability
 			const string rulebookName = "Evolve Randomly";
 			const string rulebookDescription = "A card bearing this sigil will grow into a random form after 1 turn on the board.";
