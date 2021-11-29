@@ -142,4 +142,10 @@
   <data name="ability_prospect" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ability_prospect.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="ability_belligerent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ability_belligerent.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ability_randomEvolve" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <value>..\Resources\ability_randomEvolve.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
