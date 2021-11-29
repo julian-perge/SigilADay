@@ -21,7 +21,7 @@ namespace SigilADay_julianperge
 			const string desc = "Odin would be proud!";
 
 			NewCard.Add(warriorName, displayName, 1, 1,
-				null, CardComplexity.Simple, CardTemple.Nature,
+				new List<CardMetaCategory>(), CardComplexity.Simple, CardTemple.Nature,
 				desc, bloodCost: 1, defaultTex: defaultTexture, abilities: new List<Ability>() { Ability.Brittle }
 			);
 		}
