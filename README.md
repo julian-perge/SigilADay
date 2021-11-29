@@ -47,6 +47,9 @@ To install SigilADay_julianperge.dll you simply need to copy **SigilADay_julianp
 
 # Changelog
 
+## v1.6.3
+- Fixed plugin version being 1.5.0 for some reason... 
+
 ## v1.6.2
 - Created `Randomly Evolve` ability;
   * Ability icon courtesy of Canas (discord name, `Snaketits#1535` is their ID) in the Inscryption modding discord.

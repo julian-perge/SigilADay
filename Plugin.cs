@@ -10,7 +10,7 @@ namespace SigilADay_julianperge
 		public const string APIGUID = "cyantist.inscryption.api";
 		public const string PluginGuid = "julianperge.inscryption.sigiladay";
 		private const string PluginName = "SigilADay_julianperge";
-		private const string PluginVersion = "1.6.2";
+		private const string PluginVersion = "1.6.3";
 
 		internal static ManualLogSource Log;
 

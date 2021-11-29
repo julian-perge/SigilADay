@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.6.3
+- Fixed plugin version being 1.5.0 for some reason...
+
 ## v1.6.2
 - Created `Randomly Evolve` - A card bearing this sigil will grow into a random form after 1 turn on the board.
 - Disabled `Belligerent` for the time being due to lack of testing (sorry!)
