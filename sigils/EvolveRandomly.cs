@@ -35,7 +35,7 @@ namespace SigilADay_julianperge
 
 		private void InitializeRandomEvolveCardListConfig()
 		{
-			_configCards = Config.Bind(PluginName, "Cards to evolve from", "Squirrel,Skunk,Shark",  
+			_configCards = Config.Bind("Evolve Randomly", "Cards to evolve from", "",  
 				new ConfigDescription( "Set list of possible cards to evolve into. Separated by commas.")).Value;
 			Log.LogDebug($"CardList value is [{_configCards}]");
 

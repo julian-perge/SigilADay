@@ -1,6 +1,6 @@
 {
     "name": "SigilADay_julianperge",
-    "version_number": "1.4.1",
+    "version_number": "1.6.2",
     "website_url": "https://github.com/julian-perge/SigilADay",
     "description": "Collection of custom sigils",
     "dependencies": [
