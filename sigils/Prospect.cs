@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using APIPlugin;
 using DiskCardGame;
 using UnityEngine;
@@ -97,6 +96,7 @@ namespace SigilADay_julianperge
 
 			Plugin.Log.LogDebug($"Setting view to board");
 			Singleton<ViewManager>.Instance.SwitchToView(View.Board, false, true);
+			yield return new WaitForSeconds(0.25f);
 
 			if (!target.Dead)
 			{
@@ -105,7 +105,6 @@ namespace SigilADay_julianperge
 				yield return new WaitForSeconds(0.25f);
 			}
 
-			yield return new WaitForSeconds(0.25f);
 			AudioController.Instance.PlaySound3D("metal_object_hit#1", MixerGroup.TableObjectsSFX,
 				Vector3.zero, 1f, 0f, new AudioParams.Pitch(AudioParams.Pitch.Variation.Medium));
 
