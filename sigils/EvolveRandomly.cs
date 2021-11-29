@@ -12,12 +12,12 @@ namespace SigilADay_julianperge
 {
 	public partial class Plugin
 	{
-		internal static ConfigEntry<string> configCards;
+		private static string _configCards;
 
 		private NewAbility AddRandomEvolve()
 		{ 
 			// setup ability
-			const string rulebookName = "Random Evolve";
+			const string rulebookName = "Evolve Randomly";
 			const string rulebookDescription = "A card bearing this sigil will grow into a random form after 1 turn on the board.";
 			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription);
 
@@ -25,21 +25,22 @@ namespace SigilADay_julianperge
 
 			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
 			// set ability to behavior class
-			NewAbility newAbility = new NewAbility(info, typeof(RandomEvolve), tex, abIds);
-			RandomEvolve.ability = newAbility.ability;
+			NewAbility newAbility = new NewAbility(info, typeof(EvolveRandomly), tex, abIds);
+			EvolveRandomly.ability = newAbility.ability;
 
 			return newAbility;
 		}
 
-		private void InitConfig()
+		private void InitializeRandomEvolveCardListConfig()
 		{
-			var cardList = configCards.Value;
-			Log.LogDebug($"CardList value is [{cardList}]");
+			_configCards = Config.Bind(PluginName, "Cards to evolve from", "Squirrel,Skunk,Shark",  
+				new ConfigDescription( "Set list of possible cards to evolve into. Separated by commas.")).Value;
+			Log.LogDebug($"CardList value is [{_configCards}]");
 
-			if (!string.IsNullOrEmpty(cardList))
+			if (!string.IsNullOrEmpty(_configCards))
 			{
-				Log.LogDebug($"RandomEvolveCardList is not empty: [{cardList}]");
-				var splitCardList = cardList
+				Log.LogDebug($"RandomEvolveCardList is not empty: [{_configCards}]");
+				var splitCardList = _configCards
 					.Split(',')
 					.Select(str => str.Trim()).ToList();
 				foreach (var cardName in splitCardList)
@@ -55,7 +56,7 @@ namespace SigilADay_julianperge
 						break;
 					}
 
-					RandomEvolve.ListOfPossibleCardsToTransformInto.Add(CardLoader.GetCardByName(cardName));
+					EvolveRandomly.ListOfPossibleCardsToTransformInto.Add(CardLoader.GetCardByName(cardName));
 					Logger.LogMessage($"[{cardName}] added to list of possible cards to evolve into");
 				}
 			}
@@ -73,7 +74,7 @@ namespace SigilADay_julianperge
 	}
 
 
-	public class RandomEvolve : Evolve
+	public class EvolveRandomly : Evolve
 	{
 		public static List<CardInfo> ListOfPossibleCardsToTransformInto = new List<CardInfo>();
 		public static Ability ability;
