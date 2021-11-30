@@ -44,7 +44,7 @@ To install SigilADay_julianperge.dll you simply need to copy **SigilADay_julianp
   * In `path_to_your_bepinex_install\BepInEx\config\`, there will be a file called `julianperge.inscryption.sigiladay.cfg`. If you don't see this, run the game for the first time and it should create the default `.cfg` file.
   * In `Cards to evolve from` setting, provide a comma-delimited list of cards you would like [creature] to evolve into.
   * If no list is provided, a card at pure random is chosen.
-  * Please see []()
+  * Please see [this example cfg file](https://github.com/julian-perge/SigilADay/blob/main/Examples/julianperge.inscryption.sigiladay.cfg) for setting up random evolutions
 
 # Changelog
 
