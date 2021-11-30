@@ -12,15 +12,24 @@ namespace SigilADay_julianperge
 {
 	public partial class Plugin
 	{
-		private static string _configCards;
+		public int GetNumCards()
+			=> Config.Bind(PluginName, "Sets of cards to modify", 1).Value;
+
+		public string GetCard(int index)
+			=> Config.Bind(PluginName, "Card" + (index + 1),
+				"Geck-Skunk,RavenEgg",
+				"Set list of possible cards to evolve into.\n" +
+				"Card to set specified evolutions to, has a hyphen before the other cards.\n"
+				+ "e.g. Geck-Skink,Raven will set the Geck card with 2 possible evolutions.").Value;
 
 		private NewAbility AddRandomEvolve()
-		{ 
+		{
 			InitializeRandomEvolveCardListConfig();
-			
+
 			// setup ability
 			const string rulebookName = "Evolve Randomly";
-			const string rulebookDescription = "A card bearing this sigil will grow into a random form after 1 turn on the board.";
+			const string rulebookDescription =
+				"A card bearing this sigil will grow into a random form after 1 turn on the board.";
 			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription);
 
 			Texture2D tex = SigilUtils.LoadTextureFromResource(Resources.ability_randomEvolve);
@@ -35,33 +44,40 @@ namespace SigilADay_julianperge
 
 		private void InitializeRandomEvolveCardListConfig()
 		{
-			_configCards = Config.Bind("Evolve Randomly", "Cards to evolve from", "",  
-				new ConfigDescription( "Set list of possible cards to evolve into. Separated by commas.")).Value;
-			Log.LogDebug($"CardList value is [{_configCards}]");
+			int numOfCards = GetNumCards();
 
-			if (!string.IsNullOrEmpty(_configCards))
+			for (var i = 0; i < numOfCards; i++)
 			{
-				Log.LogDebug($"RandomEvolveCardList is not empty: [{_configCards}]");
-				var splitCardList = _configCards
-					.Split(',')
-					.Select(str => str.Trim()).ToList();
-				foreach (var cardName in splitCardList)
+				string cardWithHyphenAndCommas = GetCard(i);
+				Plugin.Log.LogDebug($"Card #[{i + 1}] has [{cardWithHyphenAndCommas}]");
+
+				string[] split = cardWithHyphenAndCommas.Split('-');
+
+				string cardToModify = split[0];
+
+				if (CardDoesNotExistInGameOrApiLoad(cardToModify))
 				{
-					bool cardExistsInGame = ScriptableObjectLoader<CardInfo>.AllData.Exists(info => info.name == cardName);
-
-					bool cardExistsInApi = TryCheckAPICards(cardName);
-
-					if (!cardExistsInGame && !cardExistsInApi)
-					{
-						Logger.LogError(
-							$"Can't find card with name \"{name}\" to add to evolve params. Make sure it's not the displayName!");
-						break;
-					}
-
-					EvolveRandomly.ListOfPossibleCardsToTransformInto.Add(CardLoader.GetCardByName(cardName));
-					Logger.LogMessage($"[{cardName}] added to list of possible cards to evolve into");
+					Logger.LogError(
+						$"Can't find card with name \"{cardToModify}\" to add to evolve params. Make sure it's not the displayName!");
+					break;
 				}
+
+				List<CardInfo> cardsForEvolutions = split[1]
+					.Split(',')
+					.Select(CardLoader.GetCardByName)
+					.ToList();
+
+				EvolveRandomly.CardsWithSpecifiedEvolutions.Add(cardToModify, cardsForEvolutions);
+				// Logger.LogMessage($"[{cardToModify}] now [{cardsForEvolutions.Count}] random evolutions");
 			}
+		}
+
+		// Taken from MADH95
+		private bool CardDoesNotExistInGameOrApiLoad(string cardToCheck)
+		{
+			bool cardExistsInGame = ScriptableObjectLoader<CardInfo>.AllData.Exists(info => info.name == cardToCheck);
+			bool cardExistsInApi = TryCheckAPICards(cardToCheck);
+			return !cardExistsInGame && !cardExistsInApi;
 		}
 
 		private bool TryCheckAPICards(string _name)
@@ -78,21 +94,19 @@ namespace SigilADay_julianperge
 
 	public class EvolveRandomly : Evolve
 	{
-		public static List<CardInfo> ListOfPossibleCardsToTransformInto = new List<CardInfo>();
+		public static readonly Dictionary<string, List<CardInfo>> CardsWithSpecifiedEvolutions = new();
 		public static Ability ability;
 		public override Ability Ability => ability;
 
 		public override CardInfo GetTransformCardInfo()
 		{
-			if (ListOfPossibleCardsToTransformInto.Count != 0)
+			if (CardsWithSpecifiedEvolutions.TryGetValue(base.Card.Info.name, out var listOfCards))
 			{
-				Plugin.Log.LogDebug($"ListOfPossibleCardsToTransformInto is not empty, choosing from list...");
-				return ListOfPossibleCardsToTransformInto[
-					Random.Range(0, ListOfPossibleCardsToTransformInto.Count)
-				];
+				Plugin.Log.LogInfo($"[{base.Card.Info.name}] has random evolutions, choosing from list...");
+				return listOfCards[Random.Range(0, listOfCards.Count)];
 			}
 
-			Plugin.Log.LogDebug($"ListOfPossibleCardsToTransformInto is empty, choosing random card...");
+			Plugin.Log.LogWarning($"[{base.Card.Info.name}] has no random evolutions, choosing pure random card...");
 			return CardLoader.GetPureRandomCard();
 		}
 	}
