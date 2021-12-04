@@ -51,8 +51,8 @@ To install SigilADay_julianperge.dll you simply need to copy **SigilADay_julianp
 
 - `Excavator` - When played, remove all `Terrain` cards on your side of the field. For each card removed, place a `Squirrel` in your hand.
 - `Nest` - When [creature] is struck, you may select a card from a specific draw pile.
-  - Cards are: `Tail_Bird`, `Tail_Furry`,`Tail_Insect`,`Boulder`
-  - These cards cannot currently be changed at the moment (possible feature in future)
+  - In `path_to_your_bepinex_install\BepInEx\config\`, there will be a file called `julianperge.inscryption.sigiladay.cfg`. If you don't see this, run the game for the first time and it should create the default `.cfg` file.
+  - Please see [this example .cfg file](https://github.com/julian-perge/SigilADay/blob/main/Examples/julianperge.inscryption.sigiladay.cfg) for setting up the cards to tutor for.
 - `Split` - When [creature] is played, create a copy an open space on your side of the field.
 
 #### Day 2
@@ -103,6 +103,10 @@ To install SigilADay_julianperge.dll you simply need to copy **SigilADay_julianp
 
 # Changelog
 
+## v1.7.1
+
+- Updated readme for older ability descriptions to match what they currently do.
+
 ## v1.7.0
 
 - Created `Hermit` ability (WIP).
@@ -113,7 +117,7 @@ To install SigilADay_julianperge.dll you simply need to copy **SigilADay_julianp
 - Added dependency to JSONLoader since this mod is primarily used with that mod.
 - Added config for Nest cards!
 - Moved dialogue speech for Nest ability before tutor sequence.
-- Implemented async calls so now EvolveRandomly and Nest configs won't load until the custom cards and abilities have been loaded.
+- Implemented async calls so now EvolveRandomly and Nest configs won't load until the custom cards and abilities have been loaded!
 
 ## v1.6.4
 

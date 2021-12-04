@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.7.1
+
+- Updated readme for older ability descriptions to match what they currently do.
+
 ## v1.7.0
 
 - Created `Hermit` ability (WIP).
