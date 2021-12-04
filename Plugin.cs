@@ -27,6 +27,7 @@ namespace SigilADay_julianperge
 			AddCannibal();
 			AddEvolveRandomly();
 			AddExcavator();
+			AddExodia();
 			// AddHermit();
 			AddFlightOfTheValkyrie();
 			AddMiasma();

@@ -19,7 +19,7 @@ namespace SigilADay_julianperge.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -103,6 +103,16 @@ namespace SigilADay_julianperge.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] ability_exodia {
+            get {
+                object obj = ResourceManager.GetObject("ability_exodia", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] ability_fotv {
             get {
                 object obj = ResourceManager.GetObject("ability_fotv", resourceCulture);
@@ -156,6 +166,36 @@ namespace SigilADay_julianperge.Properties {
         public static byte[] ability_split {
             get {
                 object obj = ResourceManager.GetObject("ability_split", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] card_exodia_head {
+            get {
+                object obj = ResourceManager.GetObject("card_exodia_head", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] card_exodia_left_arm {
+            get {
+                object obj = ResourceManager.GetObject("card_exodia_left_arm", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] card_exodia_right_arm {
+            get {
+                object obj = ResourceManager.GetObject("card_exodia_right_arm", resourceCulture);
                 return ((byte[])(obj));
             }
         }
