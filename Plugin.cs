@@ -40,8 +40,8 @@ namespace SigilADay_julianperge
 		private void Start()
 		{
 			Log.LogDebug($"SigilADay_julianperge Start() begin");
-			InitializeRandomEvolveCardListConfig();
-
+			InitializeEvolveRandomlyCardListConfig();
+			Nest.TutorCards = InitializeConfigNest();
 			Log.LogDebug($"SigilADay_julianperge Start() end");
 		}
 	}
