@@ -63,9 +63,9 @@ namespace SigilADay_julianperge.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static byte[] ability_randomEvolve {
+        public static byte[] ability_belligerent {
             get {
-                object obj = ResourceManager.GetObject("ability_randomEvolve", resourceCulture);
+                object obj = ResourceManager.GetObject("ability_belligerent", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace SigilADay_julianperge.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static byte[] ability_belligerent {
+        public static byte[] ability_brimstone {
             get {
-                object obj = ResourceManager.GetObject("ability_belligerent", resourceCulture);
+                object obj = ResourceManager.GetObject("ability_brimstone", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -136,6 +136,16 @@ namespace SigilADay_julianperge.Properties {
         public static byte[] ability_prospect {
             get {
                 object obj = ResourceManager.GetObject("ability_prospect", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] ability_randomEvolve {
+            get {
+                object obj = ResourceManager.GetObject("ability_randomEvolve", resourceCulture);
                 return ((byte[])(obj));
             }
         }
