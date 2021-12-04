@@ -4,6 +4,11 @@ Collection of custom sigils added to daily by Julian Perge.
 
 This was forked from Cyantist's [repo](https://github.com/ScottWilson0903/SigilADay/) as I wanted to make my own sigils that could be used in the [JSONCardLoader](https://github.com/MADH95/JSONLoaderPlugin)
 
+## INACTIVE UNTIL FIXED (as of version 1.7.0)
+
+- Belligerent
+- Hermit
+
 ## Example with JSONCardLoader
 
 ### Using these custom sigils in one of your created cards or modify existing cards
