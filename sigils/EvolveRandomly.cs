@@ -63,16 +63,14 @@ namespace SigilADay_julianperge
 		// Taken from MADH95
 		private bool CardDoesNotExistInGameOrApiLoad(string cardToCheck)
 		{
-			bool cardExistsInGame = ScriptableObjectLoader<CardInfo>.AllData.Exists(info => info.name == cardToCheck);
-			bool cardExistsInApi = TryCheckAPICards(cardToCheck);
-			return !cardExistsInGame && !cardExistsInApi;
+			return !VerifyPluginsAndApiCards(cardToCheck);
 		}
 
-		private bool TryCheckAPICards(string _name)
+		private bool VerifyPluginsAndApiCards(string cardToCheck)
 		{
 			return Chainloader.PluginInfos.ContainsKey(APIGUID)
 			       && Chainloader.PluginInfos.ContainsKey(JSONGUID)
-			       && CheckForAPICard(_name).Result;
+			       && CheckThatAPICardExists(cardToCheck).Result;
 		}
 
 		async Task<bool> WaitForItToWork()
@@ -88,7 +86,7 @@ namespace SigilADay_julianperge
 		}
 		
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		private async Task<bool> CheckForAPICard(string nameParam)
+		private async Task<bool> CheckThatAPICardExists(string nameParam)
 		{
 			bool result = await WaitForItToWork();
 			Plugin.Log.LogDebug("WaitForItToWork done:" + result); // true or false

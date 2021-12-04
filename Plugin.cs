@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
@@ -37,11 +38,11 @@ namespace SigilADay_julianperge
 			harmony.PatchAll();
 		}
 
-		private void Start()
+		private async void Start()
 		{
 			Log.LogDebug($"SigilADay_julianperge Start() begin");
-			InitializeEvolveRandomlyCardListConfig();
-			Nest.TutorCards = InitializeConfigNest();
+			await Task.Run(InitializeEvolveRandomlyCardListConfig);
+			Nest.TutorCards = await Task.Run(InitializeConfigNest);
 			Log.LogDebug($"SigilADay_julianperge Start() end");
 		}
 	}
