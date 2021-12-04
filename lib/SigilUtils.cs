@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using APIPlugin;
 using BepInEx;
@@ -58,6 +59,11 @@ namespace SigilADay_julianperge
 			return AbilityIdentifier.GetAbilityIdentifier(SigilADay_julianperge.Plugin.PluginGuid, rulebookName);
 		}
 
+		public static SpecialAbilityIdentifier GetSpecialAbilityId(string rulebookName)
+		{
+			return SpecialAbilityIdentifier.GetID(SigilADay_julianperge.Plugin.PluginGuid, rulebookName);
+		}
+
 		public static string GetFullPathOfFile(string fileToLookFor)
 		{
 			return Directory.GetFiles(Paths.PluginPath, fileToLookFor, SearchOption.AllDirectories)[0];
@@ -74,6 +80,19 @@ namespace SigilADay_julianperge
 			byte[] imgBytes = ReadArtworkFileAsBytes(nameOfCardArt);
 			bool isLoaded = texture.LoadImage(imgBytes);
 			return texture;
+		}
+
+		public static readonly Predicate<PlayableCard> IsNonLivingCard = playableCard =>
+			playableCard
+			&& playableCard.Info
+			&& playableCard.Info.traits.Exists(t => t is Trait.Terrain or Trait.Pelt);
+
+
+		public static readonly Predicate<PlayableCard> IsLivingCard = playableCard => !IsNonLivingCard.Invoke(playableCard);
+
+		public static String GetLogOfCardInSlot(PlayableCard playableCard)
+		{
+			return $"Card [{playableCard.Info.name}] Slot [{playableCard.Slot.Index}]";
 		}
 	}
 }
