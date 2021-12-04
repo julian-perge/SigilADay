@@ -46,7 +46,7 @@ namespace SigilADay_julianperge
 					+ "\nIf a number is set, will randomly generate cards of that blood cost."
 					+ "\nIf allowing to search for bones cards is set to true, all bones cards will be searched for due to the limited number of bones cards in Act 1."
 					+ "\ne.g. 3 will generate cards of only 3 blood cost type."
-					+ "\nAnything more than 10 will cap at 10."
+					+ "\nIf the cards added below is greater than 10, only those first 10 will be chosen"
 					+ "\nIf you have set the draw pile number higher than the list provided, random cards will be added until total has been reached.")
 				.Value;
 
@@ -55,8 +55,10 @@ namespace SigilADay_julianperge
 			int randomSeed = SaveManager.SaveFile.GetCurrentRandomSeed();
 			List<CardInfo> listOfCards = new List<CardInfo>();
 			int numberOfCardsForDeck = GetNumCardsForDrawPile();
+			Plugin.Log.LogDebug($"Generating [{numberOfCardsForDeck}] cards");
 			if (IsCompleteRandomEnabled())
 			{
+				Plugin.Log.LogDebug($"Complete randomness is enabled for Nest!");
 				for (int i = 0; i < numberOfCardsForDeck; i++)
 				{
 					listOfCards.Add(CardLoader.GetPureRandomCard());

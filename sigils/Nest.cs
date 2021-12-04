@@ -52,6 +52,7 @@ namespace SigilADay_julianperge
 		public override IEnumerator OnTakeDamage(PlayableCard source)
 		{
 			yield return base.PreSuccessfulTriggerSequence();
+			yield return base.LearnAbility(0.5f);
 			base.Card.Anim.StrongNegationEffect();
 			yield return new WaitForSeconds(0.4f);
 
@@ -71,7 +72,6 @@ namespace SigilADay_julianperge
 			// call SpawnCards to correctly show how many cards are left.
 			yield return Singleton<CardDrawPiles3D>.Instance.pile.SpawnCards(_originalDeckCards.Count, 0.5f);
 
-			yield return base.LearnAbility(0.5f);
 			Singleton<ViewManager>.Instance.Controller.LockState = ViewLockState.Unlocked;
 			yield break;
 		}
