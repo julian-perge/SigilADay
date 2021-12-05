@@ -11,19 +11,17 @@ namespace SigilADay_julianperge
 		private static NewAbility AddCannibal()
 		{
 			// setup ability
-			const string rulebookName = "Cannibal";
+			string rulebookName = $"[{PluginName}] Cannibal";
 			const string rulebookDescription =
 				"At the end of your turn, [creature] will steal 1 health from adjacent creatures of the same tribe.";
 			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true);
 
-			Texture2D tex = SigilUtils.LoadTextureFromResource(Resources.ability_cannibal);
-
-			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
-			// set ability to behavior class
-			NewAbility newAbility = new NewAbility(info, typeof(Cannibal), tex, abIds);
-			Cannibal.ability = newAbility.ability;
-
-			return newAbility;
+			return SigilUtils.CreateAbility(
+				typeof(Cannibal),
+				Resources.ability_cannibal,
+				rulebookName,
+				rulebookDescription
+			);
 		}
 	}
 
@@ -32,7 +30,7 @@ namespace SigilADay_julianperge
 		public static Ability ability;
 
 		public override Ability Ability => ability;
-		
+
 		// 1. turn ending
 		// 2. does the card with this sigl respond?
 		// 3. Getting adjacent slots of the card with the sigil
@@ -46,28 +44,30 @@ namespace SigilADay_julianperge
 		public override IEnumerator OnTurnEnd(bool playerTurnEnd)
 		{
 			yield return base.PreSuccessfulTriggerSequence();
-			
+
 			CardSlot toLeft = Singleton<BoardManager>.Instance.GetAdjacent(base.Card.slot, true);
 			CardSlot toRight = Singleton<BoardManager>.Instance.GetAdjacent(base.Card.slot, false);
 			int healthToSteal = 0;
-			
+
 			bool toLeftHasMatchingTribe = AdjacentSlotHasMatchingTribe(toLeft);
 			bool toRightHasMatchingTribe = AdjacentSlotHasMatchingTribe(toRight);
-			
+
 			// [X] = card with this ability
 			// O O [X] X, toLeft will not be null, but card will be. toRight will not be null and card will not be null
 			// [X] O O O, toLeft will be null since no slot exists after the farthest left slot
 
 			if (toLeftHasMatchingTribe)
 			{
-				Plugin.Log.LogDebug($"ToLeft exists, adjCard [{toLeft.Card.Info.name}] in slot [{toLeft}] will have 1 health stolen");
+				Plugin.Log.LogDebug(
+					$"ToLeft exists, adjCard [{toLeft.Card.Info.name}] in slot [{toLeft}] will have 1 health stolen");
 				healthToSteal++;
 				yield return FriendlyCardTakesDamage(toLeft);
 			}
 
 			if (toRightHasMatchingTribe)
 			{
-				Plugin.Log.LogDebug($"ToRight exists, adjCard [{toRight.Card.Info.name}] in slot [{toRight}] will have 1 health stolen");
+				Plugin.Log.LogDebug(
+					$"ToRight exists, adjCard [{toRight.Card.Info.name}] in slot [{toRight}] will have 1 health stolen");
 				healthToSteal++;
 				yield return FriendlyCardTakesDamage(toRight);
 			}
@@ -99,7 +99,7 @@ namespace SigilADay_julianperge
 
 		private bool AdjacentSlotHasMatchingTribe(CardSlot adjSlot)
 		{
-			return (adjSlot && adjSlot.Card) 
+			return (adjSlot && adjSlot.Card)
 			       && ((base.Card.Info.tribes.Count == 0 && adjSlot.Card.Info.tribes.Count == 0)
 			           || base.Card.Info.tribes.Exists(adjSlot.Card.Info.IsOfTribe));
 		}

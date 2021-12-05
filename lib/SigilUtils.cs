@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using APIPlugin;
 using BepInEx;
 using DiskCardGame;
@@ -12,7 +13,7 @@ namespace SigilADay_julianperge
 	public static class SigilUtils
 	{
 		public static AbilityInfo CreateInfoWithDefaultSettings(
-			string rulebookName, string rulebookDescription, bool withDialogue = false, int powerLevel = 0
+			string rulebookName, string rulebookDescription, bool withDialogue = true, int powerLevel = 0
 		)
 		{
 			AbilityInfo info = ScriptableObject.CreateInstance<AbilityInfo>();
@@ -39,13 +40,62 @@ namespace SigilADay_julianperge
 			return new DialogueEvent.LineSet(
 				new List<DialogueEvent.Line>()
 				{
-					new DialogueEvent.Line()
+					new()
 					{
 						text = dialogue
 					}
 				}
 			);
 		}
+
+		public static NewAbility CreateAbility(
+			Type type,
+			byte[] texture,
+			string rulebookName,
+			string rulebookDescription,
+			int powerLevel = 0
+		)
+		{
+			return CreateAbility(type, LoadTextureFromResource(texture), rulebookName, rulebookDescription, powerLevel);
+		}
+
+		public static NewAbility CreateAbility(
+			Type type,
+			Texture2D texture,
+			string rulebookName,
+			string rulebookDescription,
+			int powerLevel = 0
+		)
+		{
+			return CreateAbility(
+				CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, powerLevel: powerLevel), 
+				type, 
+				texture
+			);
+		}
+
+		public static NewAbility CreateAbility(
+			AbilityInfo info,
+			Type type,
+			Texture2D texture
+		)
+		{
+			// instantiate
+			var newAbility = new NewAbility(
+				info, type, texture, GetAbilityId(info.rulebookName)
+			);
+
+			// Get static field
+			FieldInfo field = type.GetField("ability",
+				BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public
+				| BindingFlags.Instance | BindingFlags.FlattenHierarchy
+			);
+			Plugin.Log.LogDebug($"Setting static ability field for [{type}] with value [{newAbility.ability}]");
+			field.SetValue(null, newAbility.ability);
+
+			return newAbility;
+		}
+
 
 		public static Texture2D LoadTextureFromResource(byte[] resourceFile)
 		{

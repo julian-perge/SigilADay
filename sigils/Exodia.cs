@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using APIPlugin;
 using DiskCardGame;
 using UnityEngine;
@@ -9,84 +8,27 @@ namespace SigilADay_julianperge
 {
 	public partial class Plugin
 	{
-		public const string Name = "Exodia";
-		public const string NameLeftArm = "Left_Arm_Of_Exodia";
-		public const string NameRightArm = "Right_Arm_Of_Exodia";
-
-		public void AddExodia()
-		{
-			AddCardExodia();
-			AddCardExodiaArms();
-		}
-
-		private NewAbility AddExodiaAbility()
+		private NewAbility AddAbilityExodia()
 		{
 			// setup ability
-			string name = "Obliterate";
-			string desc = "When Exodia has the left and right arm cards on each respective side, then you win the match.";
-			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(name, desc);
-			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
+			string rulebookName = $"[{PluginName}] Obliterate";
+			const string rulebookDescription
+				= "When Exodia has the left and right arm cards on each respective side, then you win the match.";
 
-			// get art
-			Texture2D tex = SigilUtils.LoadTextureFromResource(Resources.ability_exodia);
-
-			NewAbility newAbility = new NewAbility(info, typeof(Exodia), tex, abIds);
-			
-			// set ability to behavior class
-			Exodia.Obliterate = newAbility.ability;
-
-			return newAbility;
-		}
-
-		private void AddCardExodia()
-		{
-			NewAbility ability = AddExodiaAbility();
-
-			List<CardMetaCategory> metaCategories = CardUtils.getRareCardMetadata;
-
-			Texture2D defaultTexture = SigilUtils.LoadTextureFromResource(Resources.card_exodia_head);
-
-			var displayName = "The Forbidden One";
-			var desc = "WHAT, BUT THAT'S IMPOSSIBLE?!";
-			var abIds = new List<AbilityIdentifier>() { ability.id };
-
-			NewCard.Add(Name, displayName, 1, 1,
-				metaCategories, CardComplexity.Simple, CardTemple.Nature,
-				desc, bloodCost: 1, defaultTex: defaultTexture, abilityIdsParam: abIds, onePerDeck: true
-			);
-		}
-
-		private void AddCardExodiaArms()
-		{
-			List<CardMetaCategory> metaCategories = CardUtils.getNormalCardMetadata;
-
-			Texture2D defaultTexLeftArm = SigilUtils.LoadTextureFromResource(Resources.card_exodia_left_arm);
-
-			Texture2D defaultTexRightArm = SigilUtils.LoadTextureFromResource(Resources.card_exodia_right_arm);
-
-			var displayNameLeft = "Left Arm Of Exodia";
-			var displayNameRight = "Right Arm Of Exodia";
-
-			var desc = "One of the arms of The Forbidden One";
-
-			// Left Arm
-			NewCard.Add(NameLeftArm, displayNameLeft, 0, 1,
-				metaCategories, CardComplexity.Simple, CardTemple.Nature,
-				desc, bloodCost: 1, defaultTex: defaultTexLeftArm, onePerDeck: true
-			);
-
-			// Right Arm
-			NewCard.Add(NameRightArm, displayNameRight, 0, 1,
-				metaCategories, CardComplexity.Simple, CardTemple.Nature,
-				desc, bloodCost: 1, defaultTex: defaultTexRightArm, onePerDeck: true
+			return SigilUtils.CreateAbility(
+				typeof(Exodia),
+				Resources.ability_exodia,
+				rulebookName,
+				rulebookDescription,
+				2
 			);
 		}
 	}
 
 	public class Exodia : AbilityBehaviour
 	{
-		public static Ability Obliterate;
-		public override Ability Ability => Obliterate;
+		public static Ability ability;
+		public override Ability Ability => ability;
 
 		private bool rightArmInCorrectSlot;
 		private bool leftArmInCorrectSlot;

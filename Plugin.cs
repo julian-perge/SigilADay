@@ -14,7 +14,7 @@ namespace SigilADay_julianperge
 		public const string JSONGUID = "MADH.inscryption.JSONLoader";
 		
 		public const string PluginGuid = "julianperge.inscryption.sigiladay";
-		private const string PluginName = "SigilADay_julianperge";
+		public const string PluginName = "SigilADay_julianperge";
 		private const string PluginVersion = "1.7.1";
 
 		internal static ManualLogSource Log;
@@ -27,7 +27,7 @@ namespace SigilADay_julianperge
 			AddCannibal();
 			AddEvolveRandomly();
 			AddExcavator();
-			AddExodia();
+			AddAbilityExodia();
 			// AddHermit();
 			AddFlightOfTheValkyrie();
 			AddMiasma();

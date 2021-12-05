@@ -13,33 +13,29 @@ namespace SigilADay_julianperge
 		{
 			AddGoldenNugget();
 			// setup ability
-			const string rulebookName = "Prospect";
+			string rulebookName = $"[{PluginName}] Prospect";
 			const string rulebookDescription =
 				"When [creature] damages another creature, that creature turns into a Golden Nugget. Gain 1 gold tooth upon destroying a Golden Nugget.";
-			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription);
 
-			Texture2D tex = SigilUtils.LoadTextureFromResource(Resources.ability_prospect);
-
-			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
-			// set ability to behavior class
-			NewAbility newAbility = new NewAbility(info, typeof(Prospect), tex, abIds);
-			Prospect.ability = newAbility.ability;
-
-			return newAbility;
+			return SigilUtils.CreateAbility(
+				typeof(Prospect),
+				Resources.ability_prospect,
+				rulebookName,
+				rulebookDescription
+			);
 		}
 
 		private NewAbility AddGoldenNugget()
 		{
-			const string rulebookName = "Golden Nugget";
+			string rulebookName = $"[{PluginName}] Golden Nugget";
 			const string rulebookDescription = "When [creature] dies, gain 1 gold tooth";
-			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true);
 
-			var abId = SigilUtils.GetAbilityId(info.rulebookName);
-
-			NewAbility newAbilityNugget = new NewAbility(info, typeof(GoldenNugget), Texture2D.blackTexture, abId);
-			GoldenNugget.ability = newAbilityNugget.ability;
-
-			return newAbilityNugget;
+			return SigilUtils.CreateAbility(
+				typeof(GoldenNugget),
+				Texture2D.blackTexture,
+				rulebookName,
+				rulebookDescription
+			);
 		}
 	}
 

@@ -11,31 +11,23 @@ namespace SigilADay_julianperge
 	{
 		private NewAbility AddNest()
 		{
-			const string rulebookName = "Nest";
+			string rulebookName = $"[{PluginName}] Nest";
 			const string rulebookDescription = "When [creature] is struck, you may select a card from a specific draw pile.";
 
-			// setup ability
-			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true, 3);
-
-			// get and load artwork
-			Texture2D sigilTex = SigilUtils.LoadTextureFromResource(Resources.ability_nest);
-
-			var abId = SigilUtils.GetAbilityId(info.rulebookName);
-
-			NewAbility newAbility = new NewAbility(info, typeof(Nest), sigilTex, abId);
-
-			// set ability to behaviour class
-			Nest.ability = newAbility.ability;
-
-			return newAbility;
+			return SigilUtils.CreateAbility(
+				typeof(Nest),
+				Resources.ability_nest,
+				rulebookName,
+				rulebookDescription,
+				3
+			);
 		}
 	}
 
 	public class Nest : AbilityBehaviour
 	{
-		public override Ability Ability => ability;
-
 		public static Ability ability;
+		public override Ability Ability => ability;
 
 		private List<CardInfo> _originalDeckCards;
 

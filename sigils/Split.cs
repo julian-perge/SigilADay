@@ -5,8 +5,6 @@ using DiskCardGame;
 using UnityEngine;
 using Resources = SigilADay_julianperge.Properties.Resources;
 
-// using UnityEngine.UIElements;
-
 namespace SigilADay_julianperge
 {
 	public partial class Plugin
@@ -14,28 +12,23 @@ namespace SigilADay_julianperge
 		private NewAbility AddSplit()
 		{
 			// setup ability
-			const string rulebookName = "Split";
+			string rulebookName = $"[{PluginName}] Split";
 			const string rulebookDescription =
 				"When [creature] is played, create a copy an open space on your side of the field.";
-			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true);
 
-			Texture2D defaultTexture = SigilUtils.LoadTextureFromResource(Resources.ability_split);
-			
-			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
-			NewAbility newAbility = new NewAbility(info, typeof(Split), defaultTexture, abIds);
-			
-			// set ability to behaviour class
-			Split.ability = newAbility.ability;
-
-			return newAbility;
+			return SigilUtils.CreateAbility(
+				typeof(Split),
+				Resources.ability_split,
+				rulebookName,
+				rulebookDescription
+			);
 		}
 	}
 
 	public class Split : AbilityBehaviour
 	{
-		public override Ability Ability => ability;
-
 		public static Ability ability;
+		public override Ability Ability => ability;
 
 		public override bool RespondsToResolveOnBoard()
 		{

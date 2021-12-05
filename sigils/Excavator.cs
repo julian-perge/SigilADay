@@ -12,28 +12,24 @@ namespace SigilADay_julianperge
 		private NewAbility AddExcavator()
 		{
 			// setup ability
-			const string rulebookName = "Excavator";
+			string rulebookName = $"[{PluginName}] Excavator";
 			const string rulebookDescription =
-				"When [creature] is played, remove all Terrain cards on your side of the field. For each card removed, place a Squirrel in your hand.";
-			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true);
+				"When [creature] is played, remove all Terrain cards on your side of the field. " +
+				"For each card removed, place a Squirrel in your hand.";
 
-			Texture2D tex = SigilUtils.LoadTextureFromResource(Resources.ability_excavator);
-
-			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
-			NewAbility newAbility = new NewAbility(info, typeof(Excavator), tex, abIds);
-			
-			// set ability to behaviour class
-			Excavator.ability = newAbility.ability;
-
-			return newAbility;
+			return SigilUtils.CreateAbility(
+				typeof(Excavator),
+				Resources.ability_excavator,
+				rulebookName,
+				rulebookDescription
+			);
 		}
 	}
 
 	public class Excavator : AbilityBehaviour
 	{
-		public override Ability Ability => ability;
-
 		public static Ability ability;
+		public override Ability Ability => ability;
 
 		public override bool RespondsToResolveOnBoard()
 		{
@@ -50,7 +46,7 @@ namespace SigilADay_julianperge
 				.GetSlots(true)
 				.Where(slot => slot && slot.Card);
 
-			Singleton<ViewManager>.Instance.SwitchToView(View.Board, false, false);
+			Singleton<ViewManager>.Instance.SwitchToView(View.Board);
 			// all the boulders need to die before we switch to our hand view to spawn the Squirrels
 			int numberOfCardsToSpawn = 0;
 
@@ -67,7 +63,7 @@ namespace SigilADay_julianperge
 			if (Singleton<ViewManager>.Instance.CurrentView != View.Default)
 			{
 				yield return new WaitForSeconds(0.2f);
-				Singleton<ViewManager>.Instance.SwitchToView(View.Default, false, false);
+				Singleton<ViewManager>.Instance.SwitchToView(View.Default);
 				yield return new WaitForSeconds(0.2f);
 			}
 
