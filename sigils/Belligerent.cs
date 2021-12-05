@@ -1,9 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using APIPlugin;
 using DiskCardGame;
-using UnityEngine;
-using Resources = SigilADay_julianperge.Properties.Resources;
+using SigilADay_julianperge.Properties;
 
 namespace SigilADay_julianperge
 {
@@ -12,19 +10,17 @@ namespace SigilADay_julianperge
 		private NewAbility AddBelligerent()
 		{
 			// setup ability
-			const string rulebookName = "Belligerent";
+			string rulebookName = $"[{PluginName}] Belligerent";
 			const string rulebookDescription =
-				"When [creature] dies, create a copy of itself with a cumulative -1 to Power and Health. Has no effect on cards with 1 Health.";
-			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription);
+				"When [creature] dies, create a copy of itself with a cumulative -1 to Power and Health. " +
+				"Has no effect on cards with 1 Health.";
 
-			Texture2D tex = SigilUtils.LoadTextureFromResource(Resources.ability_belligerent);
-
-			var abIds = SigilUtils.GetAbilityId(info.rulebookName);
-			// set ability to behavior class
-			NewAbility newAbility = new NewAbility(info, typeof(Belligerent), tex, abIds);
-			Belligerent.ability = newAbility.ability;
-
-			return newAbility;
+			return SigilUtils.CreateAbility(
+				typeof(Belligerent),
+				Resources.ability_belligerent,
+				rulebookName,
+				rulebookDescription
+			);
 		}
 	}
 
@@ -33,7 +29,21 @@ namespace SigilADay_julianperge
 		public static Ability ability;
 		public override Ability Ability => ability;
 
-		private Dictionary<string, int> timesKilled = new Dictionary<string, int>();
+		private int timesKilled = 0;
+
+		private CardModificationInfo GetModdedInfo()
+		{
+			var cardModificationInfo = new CardModificationInfo
+			{
+				attackAdjustment = -timesKilled,
+				healthAdjustment = -timesKilled,
+				nullifyGemsCost = true,
+				nameReplacement = "Lesser " + base.Card.Info.name,
+				singletonId = "lesserCard" + base.Card.Info + timesKilled
+			};
+
+			return cardModificationInfo;
+		}
 
 		public override bool RespondsToDie(bool wasSacrifice, PlayableCard killer)
 		{
@@ -42,20 +52,18 @@ namespace SigilADay_julianperge
 
 		public override IEnumerator OnDie(bool wasSacrifice, PlayableCard killer)
 		{
-			if (base.Card.MaxHealth > 1)
+			timesKilled++;
+			Plugin.Log.LogDebug($"{SigilUtils.GetLogOfCardInSlot(base.Card)} Times killed [{timesKilled}]");
+			if (base.Card.MaxHealth - timesKilled > 1)
 			{
-				CardInfo cardByName = CardLoader.GetCardByName(base.Card.Info.name);
-				CardModificationInfo cardModificationInfo = new CardModificationInfo
-				{
-					attackAdjustment = cardByName.Attack - 1,
-					healthAdjustment = cardByName.Health - 1,
-					nullifyGemsCost = true,
-					nameReplacement = "Lesser " + base.Card.Info.name,
-					abilities = new List<Ability> { ability },
-					singletonId = "lesserCard" + base.Card.Info + timesKilled.Count
-				};
-				cardByName.Mods.Add(cardModificationInfo);
-				yield return Singleton<BoardManager>.Instance.CreateCardInSlot(cardByName, base.Card.Slot);
+				Plugin.Log.LogDebug($"Max Health [{base.Card.MaxHealth}] minus [{timesKilled}]");
+
+				CardInfo cardWithMods = base.Card.Info.Clone() as CardInfo;
+				cardWithMods.Mods.Add(GetModdedInfo());
+
+				Plugin.Log.LogDebug($"Added temp mods to cloned card.");
+
+				yield return Singleton<BoardManager>.Instance.CreateCardInSlot(cardWithMods, base.Card.Slot);
 			}
 
 			yield break;

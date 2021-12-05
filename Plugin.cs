@@ -22,7 +22,7 @@ namespace SigilADay_julianperge
 		private void Awake()
 		{
 			Log = base.Logger;
-			// AddBelligerent();
+			AddBelligerent();
 			AddBrimstone();
 			AddCannibal();
 			AddEvolveRandomly();

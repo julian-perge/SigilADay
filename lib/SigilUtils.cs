@@ -87,10 +87,9 @@ namespace SigilADay_julianperge
 
 			// Get static field
 			FieldInfo field = type.GetField("ability",
-				BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public
-				| BindingFlags.Instance | BindingFlags.FlattenHierarchy
+				BindingFlags.Static | BindingFlags.Public | BindingFlags.Instance
 			);
-			Plugin.Log.LogDebug($"Setting static ability field for [{type}] with value [{newAbility.ability}]");
+			Plugin.Log.LogDebug($"Setting static field [{field.Name}] for [{type}] with value [{newAbility.ability}]");
 			field.SetValue(null, newAbility.ability);
 
 			return newAbility;

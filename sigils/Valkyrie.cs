@@ -35,27 +35,20 @@ namespace SigilADay_julianperge
 				"When [creature] is played, fill all open slots on your side of the field with 1/1 Norse Warriors. " +
 				"A Norse Warrior is defined as: 1 Power, 1 Health, Brittle";
 
-			// setup ability
-			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true, 3);
-
-			// get and load artwork
-			Texture2D sigilTex = SigilUtils.LoadTextureFromResource(Resources.ability_fotv);
-
-			var abId = SigilUtils.GetAbilityId(info.rulebookName);
-			
-			NewAbility newAbility = new NewAbility(info, typeof(FlightOfTheValkyrie), sigilTex, abId);
-			
-			FlightOfTheValkyrie.ability = newAbility.ability;
-
-			return newAbility;
+			return SigilUtils.CreateAbility(
+				typeof(FlightOfTheValkyrie),
+				Resources.ability_fotv,
+				rulebookName,
+				rulebookDescription,
+				3
+			);
 		}
 	}
 
 	public class FlightOfTheValkyrie : AbilityBehaviour
 	{
-		public override Ability Ability => ability;
-
 		public static Ability ability;
+		public override Ability Ability => ability;
 
 		public override bool RespondsToResolveOnBoard()
 		{
