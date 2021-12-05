@@ -123,6 +123,16 @@ namespace SigilADay_julianperge.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] ability_martyr {
+            get {
+                object obj = ResourceManager.GetObject("ability_martyr", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] ability_miasma {
             get {
                 object obj = ResourceManager.GetObject("ability_miasma", resourceCulture);
@@ -163,6 +173,16 @@ namespace SigilADay_julianperge.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] ability_silence {
+            get {
+                object obj = ResourceManager.GetObject("ability_silence", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] ability_split {
             get {
                 object obj = ResourceManager.GetObject("ability_split", resourceCulture);
@@ -173,9 +193,9 @@ namespace SigilADay_julianperge.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static byte[] card_exodia_head {
+        public static byte[] ability_wof_def {
             get {
-                object obj = ResourceManager.GetObject("card_exodia_head", resourceCulture);
+                object obj = ResourceManager.GetObject("ability_wof_def", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -183,19 +203,9 @@ namespace SigilADay_julianperge.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static byte[] card_exodia_left_arm {
+        public static byte[] ability_yield {
             get {
-                object obj = ResourceManager.GetObject("card_exodia_left_arm", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] card_exodia_right_arm {
-            get {
-                object obj = ResourceManager.GetObject("card_exodia_right_arm", resourceCulture);
+                object obj = ResourceManager.GetObject("ability_yield", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -206,6 +216,16 @@ namespace SigilADay_julianperge.Properties {
         public static byte[] card_norse_warrior {
             get {
                 object obj = ResourceManager.GetObject("card_norse_warrior", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] card_wof {
+            get {
+                object obj = ResourceManager.GetObject("card_wof", resourceCulture);
                 return ((byte[])(obj));
             }
         }

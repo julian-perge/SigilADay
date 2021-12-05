@@ -165,13 +165,19 @@
   <data name="ability_exodia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ability_exodia.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="card_exodia_head" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card_exodia_head.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="ability_martyr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ability_martyr.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="card_exodia_left_arm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card_exodia_left_arm.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="ability_silence" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ability_silence.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="card_exodia_right_arm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card_exodia_right_arm.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="ability_wof_def" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ability_wof_def.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ability_yield" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ability_yield.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="card_wof" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\card_wof.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
