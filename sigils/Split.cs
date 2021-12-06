@@ -12,7 +12,7 @@ namespace SigilADay_julianperge
 		private NewAbility AddSplit()
 		{
 			// setup ability
-			string rulebookName = $"[{PluginName}] Split";
+			string rulebookName = $"Split";
 			const string rulebookDescription =
 				"When [creature] is played, create a copy an open space on your side of the field.";
 

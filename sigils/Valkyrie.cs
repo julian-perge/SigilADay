@@ -30,7 +30,7 @@ namespace SigilADay_julianperge
 		{
 			AddNorseWarrior();
 
-			string rulebookName = $"[{PluginName}] Flight of the Valkyrie";
+			string rulebookName = $"Flight of the Valkyrie";
 			const string rulebookDescription =
 				"When [creature] is played, fill all open slots on your side of the field with 1/1 Norse Warriors. " +
 				"A Norse Warrior is defined as: 1 Power, 1 Health, Brittle";

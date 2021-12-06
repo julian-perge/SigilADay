@@ -13,7 +13,7 @@ namespace SigilADay_julianperge
 		{
 			AddGoldenNugget();
 			// setup ability
-			string rulebookName = $"[{PluginName}] Prospect";
+			string rulebookName = $"Prospect";
 			const string rulebookDescription =
 				"When [creature] damages another creature, that creature turns into a Golden Nugget. Gain 1 gold tooth upon destroying a Golden Nugget.";
 
@@ -27,7 +27,7 @@ namespace SigilADay_julianperge
 
 		private NewAbility AddGoldenNugget()
 		{
-			string rulebookName = $"[{PluginName}] Golden Nugget";
+			string rulebookName = $"Golden Nugget";
 			const string rulebookDescription = "When [creature] dies, gain 1 gold tooth";
 
 			return SigilUtils.CreateAbility(

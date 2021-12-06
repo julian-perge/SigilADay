@@ -11,7 +11,7 @@ namespace SigilADay_julianperge
 		private static NewAbility AddCannibal()
 		{
 			// setup ability
-			string rulebookName = $"[{PluginName}] Cannibal";
+			string rulebookName = $"Cannibal";
 			const string rulebookDescription =
 				"At the end of your turn, [creature] will steal 1 health from adjacent creatures of the same tribe.";
 			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true);

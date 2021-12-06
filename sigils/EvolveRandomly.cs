@@ -12,7 +12,7 @@ namespace SigilADay_julianperge
 		private NewAbility AddEvolveRandomly()
 		{
 			// setup ability
-			string rulebookName = $"[{PluginName}] Evolve Randomly";
+			string rulebookName = $"Evolve Randomly";
 			const string rulebookDescription =
 				"A card bearing this sigil will grow into a random form after 1 turn on the board.";
 

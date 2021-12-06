@@ -11,7 +11,7 @@ namespace SigilADay_julianperge
 		private NewAbility AddAbilityExodia()
 		{
 			// setup ability
-			string rulebookName = $"[{PluginName}] Obliterate";
+			string rulebookName = $"Obliterate";
 			const string rulebookDescription
 				= "When Exodia has the left and right arm cards on each respective side, then you win the match.";
 

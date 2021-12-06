@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections;
 using APIPlugin;
 using DiskCardGame;
 using HarmonyLib;
@@ -14,7 +11,7 @@ namespace SigilADay_julianperge
 		private static NewAbility AddBrimstone()
 		{
 			// setup ability
-			string rulebookName = $"[{PluginName}] Brimstone";
+			const string rulebookName = "Brimstone";
 			const string rulebookDescription =
 				"Does not affect Terrain or Pelts. When [creature] damages another card, any overkill damage is set to 1. " +
 				"If no card is queued to take overkill damage, your opponent takes 1 damage instead.";
@@ -37,10 +34,9 @@ namespace SigilADay_julianperge
 			bool attackingSlotIsPlayerCard = attackingSlot.Card is not null && attackingSlot.IsPlayerSlot;
 			bool attackingSlotHasBrimstone =
 				attackingSlotIsPlayerCard && attackingSlot.Card.Info.HasAbility(Brimstone._Ability);
-			if (damage > 0 && attackingSlotHasBrimstone)
+			if (attackingSlotHasBrimstone)
 			{
-				Plugin.Log.LogDebug($"{SigilUtils.GetLogOfCardInSlot(attackingSlot.Card)} " +
-				                    $"- 1 damage from Brimstone {(queuedSlot is null ? "" : $"will be done to [{queuedSlot.Info.name}]")}");
+				Plugin.Log.LogDebug($"{SigilUtils.GetLogOfCardInSlot(attackingSlot.Card)} - Setting damage to 1 for Brimstone");
 				damage = 1;
 			}
 		}
@@ -92,6 +88,26 @@ namespace SigilADay_julianperge
 				yield return base.LearnAbility(0.25f);
 				yield return Singleton<LifeManager>.Instance.ShowDamageSequence(1, 1, false);
 			}
+
+			yield break;
+		}
+
+		public override bool RespondsToSlotTargetedForAttack(CardSlot slot, PlayableCard attacker)
+		{
+			Plugin.Log.LogDebug(
+				$"[RespondsToSlotTargetedForAttack] Attacker is equal to base.Card? [{attacker == Card}] Slot [{attacker.Slot.Index}]");
+			return attacker == Card;
+		}
+
+		public override IEnumerator OnSlotTargetedForAttack(CardSlot slot, PlayableCard attacker)
+		{
+			// Plugin.Log.LogDebug($"[OnSlotTargetedForAttack] Setting {SigilUtils.GetLogOfCardInSlot(attacker)} startedAttack to true");
+			// card exists in opposing slot
+			// AND, no card exists in queued slot BEHIND slot that was targeted
+			this.willDealOverkillDamage = slot.Card
+			                              && !Singleton<BoardManager>.Instance.GetCardQueuedForSlot(slot)
+			                              && base.Card.Attack > slot.Card.Health;
+			yield break;
 		}
 	}
 }

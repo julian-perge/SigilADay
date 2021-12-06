@@ -11,7 +11,7 @@ namespace SigilADay_julianperge
 	{
 		private NewAbility AddNest()
 		{
-			string rulebookName = $"[{PluginName}] Nest";
+			string rulebookName = $"Nest";
 			const string rulebookDescription = "When [creature] is struck, you may select a card from a specific draw pile.";
 
 			return SigilUtils.CreateAbility(
