@@ -55,10 +55,9 @@ namespace SigilADay_julianperge
 			int randomSeed = SaveManager.SaveFile.GetCurrentRandomSeed();
 			List<CardInfo> listOfCards = new List<CardInfo>();
 			int numberOfCardsForDeck = GetNumCardsForDrawPile();
-			Plugin.Log.LogDebug($"Generating [{numberOfCardsForDeck}] cards");
 			if (IsCompleteRandomEnabled())
 			{
-				Plugin.Log.LogDebug($"Complete randomness is enabled for Nest!");
+				Plugin.Log.LogDebug($"Complete randomness is enabled for Nest! Generating [{numberOfCardsForDeck}]");
 				for (int i = 0; i < numberOfCardsForDeck; i++)
 				{
 					listOfCards.Add(CardLoader.GetPureRandomCard());
@@ -88,6 +87,7 @@ namespace SigilADay_julianperge
 
 				if (numberOfCardsForDeck > listOfCards.Count)
 				{
+					Plugin.Log.LogDebug($"Generating an extra [{numberOfCardsForDeck - listOfCards.Count}] cards to fill up deck");
 					listOfCards.AddRange(GetRandomBloodOrBonesCards(
 						ref randomSeed,
 						numberOfCardsForDeck - listOfCards.Count
