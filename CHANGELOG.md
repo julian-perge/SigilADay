@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.8.1
+
+- Fixed logic for Brimstone. Forgot to remove an extra check.
+
 ## v1.8.0
 
 - Migrated `Exodia` ability from main repo.
