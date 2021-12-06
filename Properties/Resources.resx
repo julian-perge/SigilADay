@@ -177,6 +177,12 @@
   <data name="ability_yield" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ability_yield.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="card_exodia_left_arm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\card_exodia_left_arm.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="card_exodia_right_arm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\card_exodia_right_arm.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="card_wof" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\card_wof.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

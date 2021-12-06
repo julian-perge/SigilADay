@@ -213,6 +213,26 @@ namespace SigilADay_julianperge.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] card_exodia_left_arm {
+            get {
+                object obj = ResourceManager.GetObject("card_exodia_left_arm", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] card_exodia_right_arm {
+            get {
+                object obj = ResourceManager.GetObject("card_exodia_right_arm", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] card_norse_warrior {
             get {
                 object obj = ResourceManager.GetObject("card_norse_warrior", resourceCulture);

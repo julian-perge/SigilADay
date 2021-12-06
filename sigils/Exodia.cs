@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using APIPlugin;
 using DiskCardGame;
 using UnityEngine;
@@ -10,10 +11,11 @@ namespace SigilADay_julianperge
 	{
 		private NewAbility AddAbilityExodia()
 		{
-			// setup ability
+			AddCardExodiaArms();
+			
 			string rulebookName = $"Obliterate";
 			const string rulebookDescription
-				= "When Exodia has the left and right arm cards on each respective side, then you win the match.";
+				= "When [creature] has the left and right arm cards of Exodia on each respective side, you win the match.";
 
 			return SigilUtils.CreateAbility(
 				typeof(Exodia),
@@ -21,6 +23,38 @@ namespace SigilADay_julianperge
 				rulebookName,
 				rulebookDescription,
 				2
+			);
+		}
+		
+		private static void AddCardExodiaArms()
+		{
+		string NameLeftArm = $"{PluginName}_Left_Arm_Of_Exodia";
+		string NameRightArm = $"{PluginName}_Right_Arm_Of_Exodia";
+		
+			List<CardMetaCategory> metaCategories = new()
+			{
+				CardMetaCategory.TraderOffer
+			};
+
+			Texture2D defaultTexLeftArm = SigilUtils.LoadTextureFromResource(Resources.card_exodia_left_arm);
+
+			Texture2D defaultTexRightArm = SigilUtils.LoadTextureFromResource(Resources.card_exodia_right_arm);
+
+			var displayNameLeft = "Left Arm Of Exodia";
+			var displayNameRight = "Right Arm Of Exodia";
+
+			var desc = "One of the arms of The Forbidden One.";
+
+			// Left Arm
+			NewCard.Add(NameLeftArm, displayNameLeft, 0, 1,
+				metaCategories, CardComplexity.Simple, CardTemple.Nature,
+				desc, bloodCost: 1, defaultTex: defaultTexLeftArm, onePerDeck: true
+			);
+
+			// Right Arm
+			NewCard.Add(NameRightArm, displayNameRight, 0, 1,
+				metaCategories, CardComplexity.Simple, CardTemple.Nature,
+				desc, bloodCost: 1, defaultTex: defaultTexRightArm, onePerDeck: true
 			);
 		}
 	}
