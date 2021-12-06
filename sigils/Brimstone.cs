@@ -13,7 +13,8 @@ namespace SigilADay_julianperge
 			// setup ability
 			const string rulebookName = "Brimstone";
 			const string rulebookDescription =
-				"Does not affect Terrain or Pelts. When [creature] damages another card, overkill damage will always happen, but damage is set to 1. " +
+				"Does not affect Terrain or Pelts. " +
+				"When [creature] damages another card, overkill damage will always happen, but damage is set to 1. " +
 				"If no card is queued to take overkill damage, your opponent takes 1 damage instead.";
 
 			return SigilUtils.CreateAbility(

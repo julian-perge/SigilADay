@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.8.0
+
+- Migrated `Exodia` ability from main repo.
+- Added `Left Arm of Exodia` and `Right Arm of Exodia` cards to card pool. Only available through Trader.
+- Replaced Brimstone ability icon with a cleaner one.
+- Replaced Belligerent ability icon with one provided by Puppetsquid#6087.
+- Added more utillity methods in SigilUtils for creating abilities. Refactored ablities to use these new methods.
+- Changed Brimstone to always have overkill damage, regardless if you kill the opposing card. Updated Brimstone description.
+
 ## v1.7.1
 
 - Updated readme for older ability descriptions to match what they currently do.
