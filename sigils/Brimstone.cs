@@ -70,7 +70,7 @@ namespace SigilADay_julianperge
 	{
 		public static Ability _Ability;
 		public override Ability Ability => _Ability;
-		private bool willDealOverkillDamage;
+		private bool willDealDamageToOpponent;
 
 		public override bool RespondsToOtherCardDie(PlayableCard card, CardSlot deathSlot, bool fromCombat,
 			PlayableCard killer)
@@ -82,7 +82,7 @@ namespace SigilADay_julianperge
 			PlayableCard killer)
 		{
 			yield return base.PreSuccessfulTriggerSequence();
-			if (willDealOverkillDamage)
+			if (willDealDamageToOpponent)
 			{
 				Plugin.Log.LogDebug(
 					$"[OnOtherCardDie] {SigilUtils.GetLogOfCardInSlot(base.Card)} with Brimstone dealing 1 damage directly.");
@@ -105,9 +105,7 @@ namespace SigilADay_julianperge
 			// Plugin.Log.LogDebug($"[OnSlotTargetedForAttack] Setting {SigilUtils.GetLogOfCardInSlot(attacker)} startedAttack to true");
 			// card exists in opposing slot
 			// AND, no card exists in queued slot BEHIND slot that was targeted
-			this.willDealOverkillDamage = slot.Card
-			                              && !Singleton<BoardManager>.Instance.GetCardQueuedForSlot(slot)
-			                              && base.Card.Attack > slot.Card.Health;
+			this.willDealDamageToOpponent = slot.Card && !Singleton<BoardManager>.Instance.GetCardQueuedForSlot(slot);
 			yield break;
 		}
 	}

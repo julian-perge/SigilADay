@@ -4,14 +4,15 @@ Collection of custom sigils added to daily by Julian Perge.
 
 This was forked from Cyantist's [repo](https://github.com/ScottWilson0903/SigilADay/) as I wanted to make my own sigils that could be used in the [JSONCardLoader](https://github.com/MADH95/JSONLoaderPlugin)
 
-## INACTIVE UNTIL FIXED (as of version 1.8.0)
+[Changelong](https://github.com/julian-perge/SigilADay/blob/main/CHANGELOG.md)
+
+## INACTIVE UNTIL FIXED (as of version 1.8.1)
 
 - Hermit
 
 ## Example with JSONCardLoader
 
-### Using these custom sigils in one of your created cards or modify existing cards
-
+Using these custom sigils in one of your created cards or modify existing cards.
 File name `geck.jldr` in `MADH95Mods-JSONCardLoader` folder.
 
 ```json
@@ -102,5 +103,5 @@ To install SigilADay_julianperge.dll you simply need to copy **SigilADay_julianp
 - `Brimstone`
   - Idea and icon courtesy of Skkull#0393 on discord.
   - Does not affect Terrain or Pelts.
-  - When [creature] damages another card, any overkill damage is set to 1.
+  - When [creature] damages another card, overkill damage will always happen, but damage is set to 1.
   - If no card is queued to take overkill damage, your opponent takes 1 damage instead.
