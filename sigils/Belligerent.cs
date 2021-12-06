@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using APIPlugin;
 using DiskCardGame;
-using SigilADay_julianperge.Properties;
+using JetBrains.Annotations;
+using UnityEngine;
+using Resources = SigilADay_julianperge.Properties.Resources;
 
 namespace SigilADay_julianperge
 {
@@ -29,20 +31,25 @@ namespace SigilADay_julianperge
 		public static Ability ability;
 		public override Ability Ability => ability;
 
-		private int timesKilled = 0;
-
-		private CardModificationInfo GetModdedInfo()
+		[CanBeNull]
+		private CardModificationInfo MatchingLesserSingletonID()
 		{
-			var cardModificationInfo = new CardModificationInfo
+			Plugin.Log.LogDebug($"Checking mods for card {SigilUtils.GetLogOfCardInSlot(Card)}");
+			return Card.Info.Mods.Count == 0
+				? null
+				: Card.Info.Mods.Find(mod => mod.singletonId.StartsWith($"lesserCard_{base.Card.Info.name}"));
+		}
+
+		private CardModificationInfo GetModdedInfo(int timesKilled)
+		{
+			return new CardModificationInfo()
 			{
 				attackAdjustment = -timesKilled,
 				healthAdjustment = -timesKilled,
 				nullifyGemsCost = true,
-				nameReplacement = "Lesser " + base.Card.Info.name,
-				singletonId = "lesserCard" + base.Card.Info + timesKilled
+				nameReplacement = "Lesser " + Card.Info.name,
+				singletonId = $"lesserCard_{Card.Info.name}_{timesKilled}"
 			};
-
-			return cardModificationInfo;
 		}
 
 		public override bool RespondsToDie(bool wasSacrifice, PlayableCard killer)
@@ -52,20 +59,41 @@ namespace SigilADay_julianperge
 
 		public override IEnumerator OnDie(bool wasSacrifice, PlayableCard killer)
 		{
-			timesKilled++;
-			Plugin.Log.LogDebug($"{SigilUtils.GetLogOfCardInSlot(base.Card)} Times killed [{timesKilled}]");
-			if (base.Card.MaxHealth - timesKilled > 1)
+			yield return base.PreSuccessfulTriggerSequence();
+			yield return new WaitForSeconds(0.3f);
+
+			int timesKilled = 0;
+			var belligMod = MatchingLesserSingletonID();
+
+			if (belligMod is not null)
 			{
-				Plugin.Log.LogDebug($"Max Health [{base.Card.MaxHealth}] minus [{timesKilled}]");
-
-				CardInfo cardWithMods = base.Card.Info.Clone() as CardInfo;
-				cardWithMods.Mods.Add(GetModdedInfo());
-
-				Plugin.Log.LogDebug($"Added temp mods to cloned card.");
-
-				yield return Singleton<BoardManager>.Instance.CreateCardInSlot(cardWithMods, base.Card.Slot);
+				Plugin.Log.LogDebug(
+					$"Belligerent mod exists for [{base.Card.Info.name}] SingletonID [{belligMod.singletonId}]");
+				timesKilled = int.Parse(belligMod.singletonId.Split('_')[2]);
 			}
 
+			if (Card.MaxHealth > 1)
+			{
+				Plugin.Log.LogDebug($"Cloning Card");
+				var lesserCard = (CardInfo)Card.Info.Clone();
+				if (belligMod is not null)
+				{
+					Plugin.Log.LogDebug($"Remove existing Belligerent mod");
+					lesserCard.Mods.Remove(belligMod);
+				}
+
+				Plugin.Log.LogDebug($"Adding updated Belligerent mod, times killed [{timesKilled + 1}]");
+				lesserCard.Mods.Add(GetModdedInfo(timesKilled + 1));
+				
+				yield return Singleton<BoardManager>.Instance.CreateCardInSlot(lesserCard, base.Card.Slot, 0.3f);
+			}
+			else
+			{
+				Plugin.Log.LogDebug($"{SigilUtils.GetLogOfCardInSlot(base.Card)} will not be reviving");
+			}
+
+			Plugin.Log.LogDebug($"Max Health [{base.Card.MaxHealth}] minus [{timesKilled}]");
+			yield return base.LearnAbility(0.5f);
 			yield break;
 		}
 	}
