@@ -2,13 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.9.9](https://github.com/julian-perge/SigilADay/compare/v1.9.8...v1.9.9) (2021-12-07)
+### [1.9.10](https://github.com/julian-perge/SigilADay/compare/v1.9.9...v1.9.10) (2021-12-07)
 
-### [1.9.8](https://github.com/julian-perge/SigilADay/compare/v1.9.7...v1.9.8) (2021-12-07)
+## [1.9.9](https://github.com/julian-perge/SigilADay/compare/v1.9.8...v1.9.9) (2021-12-07)
 
-### [1.9.7](https://github.com/julian-perge/SigilADay/compare/v1.9.6...v1.9.7) (2021-12-07)
+## [1.9.8](https://github.com/julian-perge/SigilADay/compare/v1.9.7...v1.9.8) (2021-12-07)
 
-### [1.9.5](https://github.com/julian-perge/SigilADay/compare/v1.9.6...v1.9.5) (2021-12-07)
+## [1.9.7](https://github.com/julian-perge/SigilADay/compare/v1.9.6...v1.9.7) (2021-12-07)
+
+## [1.9.5](https://github.com/julian-perge/SigilADay/compare/v1.9.6...v1.9.5) (2021-12-07)
 
 ## [1.9.4](https://github.com/julian-perge/SigilADay/compare/v1.9.2...v1.9.4) (2021-12-07)
 
