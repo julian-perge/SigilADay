@@ -47,39 +47,41 @@ namespace SigilADay_julianperge
 				}
 			);
 		}
-
-		public static NewAbility CreateAbility(
-			Type type,
+		
+		public static NewAbility CreateAbility<T>(
 			byte[] texture,
 			string rulebookName,
 			string rulebookDescription,
 			int powerLevel = 0
-		)
+		) where T : AbilityBehaviour
 		{
-			return CreateAbility(type, LoadTextureFromResource(texture), rulebookName, rulebookDescription, powerLevel);
+			return CreateAbility<T>(
+				LoadTextureFromResource(texture), 
+				rulebookName, 
+				rulebookDescription, 
+				powerLevel
+				);
 		}
 
-		public static NewAbility CreateAbility(
-			Type type,
-			Texture2D texture,
+		public static NewAbility CreateAbility<T>(
+			Texture texture,
 			string rulebookName,
 			string rulebookDescription,
 			int powerLevel = 0
-		)
+		) where T : AbilityBehaviour
 		{
-			return CreateAbility(
+			return CreateAbility<T>(
 				CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, powerLevel: powerLevel), 
-				type, 
 				texture
 			);
 		}
 
-		public static NewAbility CreateAbility(
+		private static NewAbility CreateAbility<T>(
 			AbilityInfo info,
-			Type type,
-			Texture2D texture
-		)
+			Texture texture
+		) where T : AbilityBehaviour
 		{
+			Type type = typeof(T);
 			// instantiate
 			var newAbility = new NewAbility(
 				info, type, texture, GetAbilityId(info.rulebookName)
@@ -95,7 +97,38 @@ namespace SigilADay_julianperge
 			return newAbility;
 		}
 
+		public static NewSpecialAbility CreateSpecialAbility<T>(
+			T type,
+			string rulebookName,
+			string rulebookDescription = null,
+			bool appliesToAttack = false,
+			bool appliesToHealth = false,
+			Texture iconGraphic = null
+		) where T : SpecialCardBehaviour
+		{
+			return CreateSpecialAbility(null);
+		}
+		
+		public static NewSpecialAbility CreateSpecialAbility(
+			SpecialCardBehaviour type,
+			StatIconInfo info = null
+		)
+		{
+			// // instantiate
+			// var newAbility = new NewSpecialAbility(
+			// 	info, type, texture, GetAbilityId(info.rulebookName)
+			// );
+			//
+			// // Get static field
+			// FieldInfo field = type.GetField("ability",
+			// 	BindingFlags.Static | BindingFlags.Public | BindingFlags.Instance
+			// );
+			// Plugin.Log.LogDebug($"Setting static field [{field.Name}] for [{type}] with value [{newAbility.ability}]");
+			// field.SetValue(null, newAbility.ability);
 
+			return null;
+		}
+		
 		public static Texture2D LoadTextureFromResource(byte[] resourceFile)
 		{
 			var texture = new Texture2D(2, 2);
