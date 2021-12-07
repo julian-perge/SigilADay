@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.8.2
+
+- Corrected static name in `Brimstone` from `_Ability` to `ability`. 
+
 ## v1.8.1
 
 - Fixed logic for Brimstone. Forgot to remove an extra check.
