@@ -4,7 +4,7 @@ Collection of custom sigils added to daily by Julian Perge.
 
 This was forked from Cyantist's [repo](https://github.com/ScottWilson0903/SigilADay/) as I wanted to make my own sigils that could be used in the [JSONCardLoader](https://github.com/MADH95/JSONLoaderPlugin)
 
-[Changelong](https://github.com/julian-perge/SigilADay/blob/main/CHANGELOG.md)
+[Changelog](https://github.com/julian-perge/SigilADay/blob/main/CHANGELOG.md)
 
 ## INACTIVE UNTIL FIXED (as of version 1.8.1)
 
