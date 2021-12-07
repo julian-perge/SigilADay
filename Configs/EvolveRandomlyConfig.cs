@@ -23,7 +23,7 @@ namespace SigilADay_julianperge
 			for (var i = 0; i < numOfCards; i++)
 			{
 				string cardWithHyphenAndCommas = GetCardForRandomEvolve(i);
-				Log.LogDebug($"Card #[{i + 1}] has [{cardWithHyphenAndCommas}]");
+				Plugin.Log.LogDebug($"Card #[{i + 1}] has [{cardWithHyphenAndCommas}]");
 
 				string[] split = cardWithHyphenAndCommas.Split('-');
 
@@ -31,8 +31,8 @@ namespace SigilADay_julianperge
 
 				if (ConfigUtils.CardDoesNotExistInGameOrApiLoad(cardToModify))
 				{
-					Logger.LogError(
-						$"Can't find card with name \"{cardToModify}\" to add to evolve params. Make sure it's not the displayName!");
+					Plugin.Log.LogError(
+						$"Can't find card with name [{cardToModify}] to add to evolve params. Make sure it's not the displayName!");
 					break;
 				}
 
