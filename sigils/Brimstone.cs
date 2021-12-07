@@ -34,7 +34,7 @@ namespace SigilADay_julianperge
 		{
 			bool attackingSlotIsPlayerCard = attackingSlot.Card is not null && attackingSlot.IsPlayerSlot;
 			bool attackingSlotHasBrimstone =
-				attackingSlotIsPlayerCard && attackingSlot.Card.Info.HasAbility(Brimstone._Ability);
+				attackingSlotIsPlayerCard && attackingSlot.Card.Info.HasAbility(Brimstone.ability);
 			if (attackingSlotHasBrimstone)
 			{
 				Plugin.Log.LogDebug($"{SigilUtils.GetLogOfCardInSlot(attackingSlot.Card)} - Setting damage to 1 for Brimstone");
@@ -68,8 +68,8 @@ namespace SigilADay_julianperge
 	// Scenario 4. No card exists for attacking, therefore no extra overkill damage is done  
 	public class Brimstone : AbilityBehaviour
 	{
-		public static Ability _Ability;
-		public override Ability Ability => _Ability;
+		public static Ability ability;
+		public override Ability Ability => ability;
 		private bool willDealDamageToOpponent;
 
 		public override bool RespondsToOtherCardDie(PlayableCard card, CardSlot deathSlot, bool fromCombat,
