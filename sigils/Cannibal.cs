@@ -11,13 +11,11 @@ namespace SigilADay_julianperge
 		private static NewAbility AddCannibal()
 		{
 			// setup ability
-			string rulebookName = $"Cannibal";
+			const string rulebookName = "Cannibal";
 			const string rulebookDescription =
 				"At the end of your turn, [creature] will steal 1 health from adjacent creatures of the same tribe.";
-			AbilityInfo info = SigilUtils.CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, true);
 
-			return SigilUtils.CreateAbility(
-				typeof(Cannibal),
+			return SigilUtils.CreateAbility<Cannibal>(
 				Resources.ability_cannibal,
 				rulebookName,
 				rulebookDescription
@@ -28,9 +26,7 @@ namespace SigilADay_julianperge
 	public class Cannibal : AbilityBehaviour
 	{
 		public static Ability ability;
-
 		public override Ability Ability => ability;
-
 		// 1. turn ending
 		// 2. does the card with this sigl respond?
 		// 3. Getting adjacent slots of the card with the sigil

@@ -11,11 +11,10 @@ namespace SigilADay_julianperge
 	{
 		private NewAbility AddNest()
 		{
-			string rulebookName = $"Nest";
+			const string rulebookName = "Nest";
 			const string rulebookDescription = "When [creature] is struck, you may select a card from a specific draw pile.";
 
-			return SigilUtils.CreateAbility(
-				typeof(Nest),
+			return SigilUtils.CreateAbility<Nest>(
 				Resources.ability_nest,
 				rulebookName,
 				rulebookDescription,

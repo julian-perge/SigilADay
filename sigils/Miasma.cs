@@ -11,11 +11,10 @@ namespace SigilADay_julianperge
 		private NewAbility AddMiasma()
 		{
 			// setup ability
-			string rulebookName = $"Miasma";
+			const string rulebookName = "Miasma";
 			const string rulebookDescription = "When [creature] dies, spawn a Greater Smoke in its place.";
 
-			return SigilUtils.CreateAbility(
-				typeof(Miasma),
+			return SigilUtils.CreateAbility<Miasma>(
 				Resources.ability_miasma,
 				rulebookName,
 				rulebookDescription,

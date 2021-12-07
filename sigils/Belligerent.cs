@@ -12,13 +12,12 @@ namespace SigilADay_julianperge
 		private NewAbility AddBelligerent()
 		{
 			// setup ability
-			string rulebookName = $"Belligerent";
+			const string rulebookName = "Belligerent";
 			const string rulebookDescription =
 				"When [creature] dies, create a copy of itself with a cumulative -1 to Power and Health. " +
 				"Has no effect on cards with 1 Health.";
 
-			return SigilUtils.CreateAbility(
-				typeof(Belligerent),
+			return SigilUtils.CreateAbility<Belligerent>(
 				Resources.ability_belligerent,
 				rulebookName,
 				rulebookDescription

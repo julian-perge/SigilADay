@@ -13,10 +13,9 @@ namespace SigilADay_julianperge
 	{
 		private void AddNorseWarrior()
 		{
-			Texture2D defaultTexture =
-				SigilUtils.LoadTextureFromResource(Resources.card_norse_warrior);
+			var defaultTexture = SigilUtils.LoadTextureFromResource(Resources.card_norse_warrior);
 
-			string warriorName = $"[{PluginName}]_NorseWarrior";
+			string warriorName = $"{PluginName}_NorseWarrior";
 			const string displayName = "Norse Warrior";
 			const string desc = "Odin would be proud!";
 
@@ -30,13 +29,12 @@ namespace SigilADay_julianperge
 		{
 			AddNorseWarrior();
 
-			string rulebookName = $"Flight of the Valkyrie";
-			const string rulebookDescription =
+			const string rulebookName = "Flight of the Valkyrie";
+			string rulebookDescription =
 				"When [creature] is played, fill all open slots on your side of the field with 1/1 Norse Warriors. " +
-				"A Norse Warrior is defined as: 1 Power, 1 Health, Brittle";
+				$"[define:{PluginName}_NorseWarrior]";
 
-			return SigilUtils.CreateAbility(
-				typeof(FlightOfTheValkyrie),
+			return SigilUtils.CreateAbility<FlightOfTheValkyrie>(
 				Resources.ability_fotv,
 				rulebookName,
 				rulebookDescription,

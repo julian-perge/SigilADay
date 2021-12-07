@@ -12,12 +12,11 @@ namespace SigilADay_julianperge
 		private NewAbility AddSplit()
 		{
 			// setup ability
-			string rulebookName = $"Split";
+			const string rulebookName = "Split";
 			const string rulebookDescription =
-				"When [creature] is played, create a copy an open space on your side of the field.";
+				"When [creature] is played, create a copy on an open space on your side of the field.";
 
-			return SigilUtils.CreateAbility(
-				typeof(Split),
+			return SigilUtils.CreateAbility<Split>(
 				Resources.ability_split,
 				rulebookName,
 				rulebookDescription

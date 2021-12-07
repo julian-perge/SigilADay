@@ -12,13 +12,12 @@ namespace SigilADay_julianperge
 		private NewAbility AddExcavator()
 		{
 			// setup ability
-			string rulebookName = $"Excavator";
+			const string rulebookName = "Excavator";
 			const string rulebookDescription =
 				"When [creature] is played, remove all Terrain cards on your side of the field. " +
 				"For each card removed, place a Squirrel in your hand.";
 
-			return SigilUtils.CreateAbility(
-				typeof(Excavator),
+			return SigilUtils.CreateAbility<Excavator>(
 				Resources.ability_excavator,
 				rulebookName,
 				rulebookDescription

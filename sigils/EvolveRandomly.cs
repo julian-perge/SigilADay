@@ -12,12 +12,11 @@ namespace SigilADay_julianperge
 		private NewAbility AddEvolveRandomly()
 		{
 			// setup ability
-			string rulebookName = $"Evolve Randomly";
+			const string rulebookName = "Evolve Randomly";
 			const string rulebookDescription =
 				"A card bearing this sigil will grow into a random form after 1 turn on the board.";
 
-			return SigilUtils.CreateAbility(
-				typeof(EvolveRandomly),
+			return SigilUtils.CreateAbility<EvolveRandomly>(
 				Resources.ability_randomEvolve,
 				rulebookName,
 				rulebookDescription

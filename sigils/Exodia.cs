@@ -13,12 +13,11 @@ namespace SigilADay_julianperge
 		{
 			AddCardExodiaArms();
 			
-			string rulebookName = $"Obliterate";
+			const string rulebookName = "Obliterate";
 			const string rulebookDescription
 				= "When [creature] has the left and right arm cards of Exodia on each respective side, you win the match.";
 
-			return SigilUtils.CreateAbility(
-				typeof(Exodia),
+			return SigilUtils.CreateAbility<Exodia>(
 				Resources.ability_exodia,
 				rulebookName,
 				rulebookDescription,
