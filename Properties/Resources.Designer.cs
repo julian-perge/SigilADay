@@ -123,6 +123,16 @@ namespace SigilADay_julianperge.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] ability_hermit {
+            get {
+                object obj = ResourceManager.GetObject("ability_hermit", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] ability_martyr {
             get {
                 object obj = ResourceManager.GetObject("ability_martyr", resourceCulture);
