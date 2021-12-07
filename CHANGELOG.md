@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.14](https://github.com/julian-perge/SigilADay/compare/v1.9.13...v1.9.14) (2021-12-07)
+
+
+### Bug Fixes
+
+* Added script for fixing title level issue. Cleanedup changelog. ([addab65](https://github.com/julian-perge/SigilADay/commits/addab65b74370e8686c4772de260858ceb788fa0))
+
 ## [1.9.13](https://github.com/julian-perge/SigilADay/compare/v1.9.12...v1.9.13) (2021-12-07)
 
 ### Docs
