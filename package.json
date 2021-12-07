@@ -1,6 +1,6 @@
 {
   "name": "sigiladay_julianperge",
-  "version": "1.9.7",
+  "version": "1.9.8",
   "description": "Collection of custom sigils",
   "main": "index.js",
   "directories": {
@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "standard-version",
     "release:minor": "standard-version --release-as minor",
-    "release:patch": "standard-version --release-as patch",
+    "release:patch": "standard-version --release-as patch ./fix-header-levels-in-changelog.sh",
     "release:major": "standard-version --release-as major",
     "prepare": "husky install"
   },
