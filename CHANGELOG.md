@@ -2,9 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## 1.9.0 (2021-12-07)
+### [1.9.1](https://github.com/julian-perge/SigilADay/compare/v1.9.0...v1.9.1) (2021-12-07)
 
-# Changelog
+
+### Features
+
+* added custom version_number writer ([16ff52d](https://github.com/julian-perge/SigilADay/commits/16ff52d076270c6197b9c8ab4d797261ac20635b))
+
+## 1.9.0 (2021-12-07)
 
 ## v1.8.3
 

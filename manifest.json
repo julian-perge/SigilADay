@@ -1,12 +1,11 @@
 {
   "name": "SigilADay_julianperge",
-  "version_number": "1.8.3",
+  "version_number": "1.9.1",
   "website_url": "https://github.com/julian-perge/SigilADay",
   "description": "Collection of custom sigils",
   "dependencies": [
     "BepInEx-BepInExPack_Inscryption-5.4.1701",
     "API_dev-API-1.12.1",
     "MADH95Mods-JSONCardLoader-1.7.1"
-  ],
-  "version": "1.9.0"
+  ]
 }
