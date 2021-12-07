@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Description>Collection of custom sigils</Description>
@@ -56,9 +56,6 @@
 
     <Message Text="Copied build files" Importance="High" />
   </Target>
-  
-  <Target Name="ZipFiles" AfterTargets="Build">
-    <Exec Command="7z a -tzip SigilADay-JulianPerge.zip .\README.md .\manifest.json .\icon.png .\bin\Debug\netstandard2.0\SigilADay_julianperge.dll" />
-  </Target>
+ 
   
 </Project>
