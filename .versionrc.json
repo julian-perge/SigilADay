@@ -14,7 +14,11 @@
   "bumpFiles": [
     {
       "filename": "manifest.json",
-      "updater": "standard-version-updater.js"
+      "updater": "manifest-version-updater.js"
+    },
+    {
+      "filename": "Plugin.cs",
+      "updater": "plugin-version-updater.js"
     }
   ]
 }
