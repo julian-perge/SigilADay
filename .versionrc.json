@@ -10,5 +10,11 @@
     { "type": "test", "hidden": true }
   ],
   "commitUrlFormat": "https://github.com/julian-perge/SigilADay/commits/{{hash}}",
-  "compareUrlFormat": "https://github.com/julian-perge/SigilADay/compare/{{previousTag}}...{{currentTag}}"
+  "compareUrlFormat": "https://github.com/julian-perge/SigilADay/compare/{{previousTag}}...{{currentTag}}",
+  "bumpFiles": [
+    {
+      "filename": "manifest.json",
+      "updater": "standard-version-updater.js"
+    }
+  ]
 }
