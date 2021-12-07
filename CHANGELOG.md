@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.2](https://github.com/julian-perge/SigilADay/compare/v1.9.1...v1.9.2) (2021-12-07)
+
+
+### Features
+
+* Added custom version controler for Plugin.cs ([29f721c](https://github.com/julian-perge/SigilADay/commits/29f721c5b1cfb7cc3211ab1736418ed7bbeafdd5))
+
+
+### Bug Fixes
+
+* fixed finding verison number for Plugin.cs ([c9cc949](https://github.com/julian-perge/SigilADay/commits/c9cc9495924d3d54ff4461aa47853a03270498fd))
+* fixed package.json version number ([fb793f4](https://github.com/julian-perge/SigilADay/commits/fb793f4b326c25d16be9cf476f7610f475848858))
+
 ## [1.9.1](https://github.com/julian-perge/SigilADay/compare/v1.9.0...v1.9.1) (2021-12-07)
 
 ## Features
