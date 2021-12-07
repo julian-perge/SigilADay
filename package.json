@@ -7,10 +7,11 @@
     "lib": "lib"
   },
   "scripts": {
+    "postchangelog": "./fix-header-levels-in-changelog.sh",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "standard-version",
     "release:minor": "standard-version --release-as minor",
-    "release:patch": "standard-version --release-as patch ./fix-header-levels-in-changelog.sh",
+    "release:patch": "standard-version --release-as patch run ./fix-header-levels-in-changelog.sh",
     "release:major": "standard-version --release-as major",
     "prepare": "husky install"
   },
