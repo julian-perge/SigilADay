@@ -17,7 +17,7 @@ namespace SigilADay_julianperge
 		{
 			return Chainloader.PluginInfos.ContainsKey(Plugin.APIGUID)
 			       && Chainloader.PluginInfos.ContainsKey(Plugin.JSONGUID)
-			       && CheckThatAPICardExists(cardToCheck).Result;
+			       && CheckThatCardExists(cardToCheck).Result;
 		}
 
 		private static async Task<bool> WaitForAllCardsToBeLoaded()
@@ -34,12 +34,16 @@ namespace SigilADay_julianperge
 		}
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		private static async Task<bool> CheckThatAPICardExists(string nameParam)
+		private static async Task<bool> CheckThatCardExists(string nameOfCard)
 		{
 			bool result = await WaitForAllCardsToBeLoaded();
-			Plugin.Log.LogDebug("All cards have been loaded!" + result); // true or false
-			return CustomCard.cards.Exists(elem => elem.name == nameParam) ||
-			       NewCard.cards.Exists(elem => elem.name == nameParam);
+			Plugin.Log.LogDebug("All cards have been loaded! " + result);
+
+			bool MatchesNameOfCard(CardInfo card) => card.name == nameOfCard;
+
+			return ScriptableObjectLoader<CardInfo>.allData.Exists(MatchesNameOfCard) ||
+			       CustomCard.cards.Exists(elem => elem.name == nameOfCard) ||
+			       NewCard.cards.Exists(MatchesNameOfCard);
 		}
 	}
 }
