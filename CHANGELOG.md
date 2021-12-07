@@ -1,8 +1,21 @@
 # Changelog
 
+## v1.8.3
+
+- Removed braces on Norse Warrior name.
+- Added [define:] in Flight of the Valkyrie rulebook description.
+- Fixed Split description.
+- Removed SlotTargetedForAttack methods in Brimstone as that was refactored into the OtherCardDie methods.
+- Made CreateAbility a generic so that the class name could be passed in.
+- Updated EvolveRandomlyConfig logging to use Plugin.Log.
+- Added hermit ability icon.
+- Refactored Hermit ability to now be AbilityBehaviour instead of SpecialCardBehaviour.
+- Added another check after cards have been loaded to also check the main card pool.
+- Made every string a const if I could.
+
 ## v1.8.2
 
-- Corrected static name in `Brimstone` from `_Ability` to `ability`. 
+- Corrected static name in `Brimstone` from `_Ability` to `ability`.
 
 ## v1.8.1
 

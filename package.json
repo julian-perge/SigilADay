@@ -1,0 +1,39 @@
+{
+  "name": "sigiladay_julianperge",
+  "version": "1.8.3",
+  "description": "Collection of custom sigils",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "standard-version",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch",
+    "release:major": "standard-version --release-as major"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/julian-perge/SigilADay.git"
+  },
+  "author": "Julian Perge",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/julian-perge/SigilADay/issues"
+  },
+  "homepage": "https://github.com/julian-perge/SigilADay#readme",
+  "dependencies": {
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
+    "standard-version": "^9.3.2"
+  },
+  "devDependencies": {
+    "husky": "^7.0.4"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
