@@ -43,7 +43,7 @@ namespace SigilADay_julianperge
 			var slotsWithCards = Singleton<BoardManager>.Instance.GetSlots(true);
 
 			base.Card.Anim.StrongNegationEffect();
-			if (slotsWithCards.TrueForAll(slot => slot && slot.Card))
+			if (slotsWithCards.TrueForAll(slot => slot.Card))
 			{
 				Plugin.Log.LogDebug(
 					$"All slots are full, not spawning a copy of [{base.Card.Info.name}]");
@@ -51,10 +51,10 @@ namespace SigilADay_julianperge
 			else
 			{
 				Plugin.Log.LogDebug("Starting copy sequence");
-				// now only check those filtered cards that have terrain traits
-				foreach (var slot in slotsWithCards.Where(slot => slot && !slot.Card))
+
+				// now only check if a card exists in that slot
+				foreach (var slot in slotsWithCards.Where(slot => !slot.Card))
 				{
-					// >= 0 AND <= 2
 					string cardToSpawn = base.Card.Info.name;
 					Plugin.Log.LogDebug($"-> Spawning [{cardToSpawn}] in slot [{slot.name}]");
 					PlayableCard copy = CardSpawner.SpawnPlayableCard(CardLoader.GetCardByName(cardToSpawn));
