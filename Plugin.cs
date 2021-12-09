@@ -15,7 +15,7 @@ namespace SigilADay_julianperge
 
 		public const string PluginGuid = "julianperge.inscryption.sigiladay";
 		public const string PluginName = "SigilADay_julianperge";
-		private const string PluginVersion = "1.9.19";
+		private const string PluginVersion = "1.10.09";
 
 		internal static ManualLogSource Log;
 
