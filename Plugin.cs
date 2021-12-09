@@ -42,8 +42,8 @@ namespace SigilADay_julianperge
 		private async void Start()
 		{
 			Log.LogDebug($"SigilADay_julianperge Start() begin");
-			await Task.Run(InitializeEvolveRandomlyCardListConfig);
 			Nest.TutorCards = await Task.Run(InitializeConfigNest);
+			await Task.Run(InitializeEvolveRandomlyCardListConfig);
 			Log.LogDebug($"SigilADay_julianperge Start() end");
 		}
 	}
