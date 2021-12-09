@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DiskCardGame;
 using Random = UnityEngine.Random;
 
@@ -50,8 +51,9 @@ namespace SigilADay_julianperge
 					+ "\nIf you have set the draw pile number higher than the list provided, random cards will be added until total has been reached.")
 				.Value;
 
-		private List<CardInfo> InitializeConfigNest()
-		{
+		private async Task<List<CardInfo>> InitializeConfigNest()
+    {
+      bool result = await ConfigUtils.WaitForAllCardsToBeLoaded();
 			int randomSeed = SaveManager.SaveFile.GetCurrentRandomSeed();
 			List<CardInfo> listOfCards = new List<CardInfo>();
 			int numberOfCardsForDeck = GetNumCardsForDrawPile();
