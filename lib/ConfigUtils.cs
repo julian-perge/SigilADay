@@ -20,7 +20,7 @@ namespace SigilADay_julianperge
 			       && CheckThatCardExists(cardToCheck).Result;
 		}
 
-		private static async Task<bool> WaitForAllCardsToBeLoaded()
+		public static async Task<bool> WaitForAllCardsToBeLoaded()
 		{
 			bool succeeded = ScriptableObjectLoader<CardInfo>.allData is not null;
 			while (!succeeded)
