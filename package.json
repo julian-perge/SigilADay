@@ -7,12 +7,12 @@
     "lib": "lib"
   },
   "scripts": {
-    "postchangelog": "sh ./tools/fix-header-levels-in-changelog.sh",
+    "postchangelog": "cd ./tools && sh ./tools/fix-header-levels-in-changelog.sh",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "release": "standard-version && npm run-script postchangelog",
-    "release:minor": "standard-version --release-as minor && npm run-script postchangelog",
-    "release:patch": "standard-version --release-as patch && npm run-script postchangelog",
-    "release:major": "standard-version --release-as major && npm run-script postchangelog",
+    "release": "cd ./tools && standard-version && npm run-script postchangelog",
+    "release:minor": "cd ./tools && standard-version --release-as minor && npm run-script postchangelog",
+    "release:patch": "cd ./tools && standard-version --release-as patch && npm run-script postchangelog",
+    "release:major": "cd ./tools && standard-version --release-as major && npm run-script postchangelog",
     "prepare": "husky install"
   },
   "repository": {
