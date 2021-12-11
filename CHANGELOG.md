@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.0](https://github.com/julian-perge/SigilADay/compare/v1.10.0...v1.11.0) (2021-12-11)
+
+
+### Bug Fixes
+
+* Added back older Brimstone logic as Leshy was not getting damaged correctly. ([240208d](https://github.com/julian-perge/SigilADay/commits/240208de02bc68dd359fa5b5ff177bca38a2e359))
+
 ## [1.10.0](https://github.com/julian-perge/SigilADay/compare/v1.9.18...v1.10.0) (2021-12-09)
 
 
