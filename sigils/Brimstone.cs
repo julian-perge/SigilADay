@@ -46,27 +46,46 @@ namespace SigilADay_julianperge
 	// Scenario 1. I would deal 10 damage to the creature opposing me, and 1 to the creature behind it
 	// Scenario 2. I would deal 10 damage to the creature opposing me, and 1 to Leshy if no card exists behind the opposing card
 	// Scenario 3. I would deal 10 damage to the terrain card, and no damage done to the card behind it or Leshy
-	// Scenario 4. No card exists for attacking, therefore no extra overkill damage is done  
+	// Scenario 4. No card exists for attacking, therefore no extra overkill damage is done
 	public class Brimstone : AbilityBehaviour
 	{
 		public static Ability ability;
 		public override Ability Ability => ability;
-		
-		public override bool RespondsToOtherCardDie(PlayableCard card, CardSlot deathSlot, bool fromCombat,
-			PlayableCard killer)
+
+		private bool willDealDamageToOpponent;
+
+    // happens BEFORE overkill damage
+    public override bool RespondsToCardGettingAttacked(PlayableCard source)
+    {
+      return source == base.Card.Slot.opposingSlot.Card;
+    }
+
+    public override IEnumerator OnCardGettingAttacked(PlayableCard card)
+    {
+      yield return base.PreSuccessfulTriggerSequence();
+      if (willDealDamageToOpponent)
+      {
+        Plugin.Log.LogDebug(
+          $"[OnCardGettingAttacked] {SigilUtils.GetLogOfCardInSlot(base.Card)} with Brimstone dealing 1 damage directly.");
+        // yield return base.LearnAbility(0.25f);
+        yield return Singleton<LifeManager>.Instance.ShowDamageSequence(1, 1, false);
+      }
+    }
+
+    // happens BEFORE OnCardGettingAttacked AND overkill damage
+		public override bool RespondsToSlotTargetedForAttack(CardSlot slot, PlayableCard attacker)
 		{
-			return fromCombat && killer == Card && !Singleton<BoardManager>.Instance.GetCardQueuedForSlot(deathSlot);
+			Plugin.Log.LogDebug(
+				$"[RespondsToSlotTargetedForAttack] Attacker is equal to base.Card? [{attacker == Card}] Slot [{attacker.Slot.Index}]");
+			return attacker == Card;
 		}
 
-		public override IEnumerator OnOtherCardDie(PlayableCard card, CardSlot deathSlot, bool fromCombat,
-			PlayableCard killer)
+		public override IEnumerator OnSlotTargetedForAttack(CardSlot slot, PlayableCard attacker)
 		{
-			yield return base.PreSuccessfulTriggerSequence();
-			Plugin.Log.LogDebug(
-				$"[OnOtherCardDie] {SigilUtils.GetLogOfCardInSlot(base.Card)} with Brimstone dealing 1 damage directly.");
-			yield return base.LearnAbility(0.25f);
-			yield return Singleton<LifeManager>.Instance.ShowDamageSequence(1, 1, false);
-			
+			// Plugin.Log.LogDebug($"[OnSlotTargetedForAttack] Setting {SigilUtils.GetLogOfCardInSlot(attacker)} startedAttack to true");
+			// card exists in opposing slot
+			// AND, no card exists in queued slot BEHIND slot that was targeted
+			this.willDealDamageToOpponent = slot.Card && !Singleton<BoardManager>.Instance.GetCardQueuedForSlot(slot);
 			yield break;
 		}
 	}
