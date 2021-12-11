@@ -1,13 +1,13 @@
 {
   "name": "sigiladay_julianperge",
-  "version": "1.20.0",
+  "version": "1.21.0",
   "description": "Collection of custom sigils",
   "main": "index.js",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-    "postchangelog": "cd ./tools && sh ./tools/fix-header-levels-in-changelog.sh",
+    "postchangelog": "cd ./tools && sh ./fix-header-levels-in-changelog.sh",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "cd ./tools && standard-version && npm run-script postchangelog",
     "release:minor": "cd ./tools && standard-version --release-as minor && npm run-script postchangelog",
