@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "postchangelog": "sh fix-header-levels-in-changelog.sh",
+    "postchangelog": "sh ./tools/fix-header-levels-in-changelog.sh",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "standard-version && npm run-script postchangelog",
     "release:minor": "standard-version --release-as minor && npm run-script postchangelog",
