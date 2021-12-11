@@ -2,8 +2,6 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [1.16.0](https://github.com/julian-perge/SigilADay/compare/v1.15.0...v1.16.0) (2021-12-11)
-
 ## [1.15.0](https://github.com/julian-perge/SigilADay/compare/v1.14.0...v1.15.0) (2021-12-11)
 
 ## [1.14.0](https://github.com/julian-perge/SigilADay/compare/v1.13.0...v1.14.0) (2021-12-11)
