@@ -73,7 +73,7 @@ namespace SigilADay_julianperge
 				foreach (var slot in slotsWithCards.Where(slot => slot && !slot.Card))
 				{
 					// >= 0 AND <= 2
-					string cardToSpawn = base.Card.Info.name;
+					string cardToSpawn = $"{PluginName}_NorseWarrior";
 					Log.LogDebug($"-> Spawning [{cardToSpawn}] in slot [{slot.name}]");
 					PlayableCard copy = CardSpawner.SpawnPlayableCard(CardLoader.GetCardByName(cardToSpawn));
 					yield return Singleton<BoardManager>.Instance.ResolveCardOnBoard(copy, slot);
