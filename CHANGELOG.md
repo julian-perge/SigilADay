@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.21.5](https://github.com/julian-perge/SigilADay/compare/v1.21.4...v1.21.5) (2021-12-25)
+
+
+### Docs
+
+* Added back in 7z command to create build ([4835a91](https://github.com/julian-perge/SigilADay/commits/4835a91de41d8c414538ccf136a7a358809b5fb4))
+* Updated version numbers for API and jsoncardloader ([72dbcf7](https://github.com/julian-perge/SigilADay/commits/72dbcf75280cc6e27b35555be808915e933ce9e6))
+
 ## [1.21.4](https://github.com/julian-perge/SigilADay/compare/v1.21.3...v1.21.4) (2021-12-25)
 
 
