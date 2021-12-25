@@ -1,6 +1,6 @@
 {
   "name": "sigiladay_julianperge",
-  "version": "1.21.1",
+  "version": "1.21.2",
   "description": "Collection of custom sigils",
   "main": "index.js",
   "directories": {

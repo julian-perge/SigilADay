@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.21.2](https://github.com/julian-perge/SigilADay/compare/v1.21.1...v1.21.2) (2021-12-25)
+
+
+### Refactors
+
+* Removed API version in .csproj. Updated API to use 1.13 ([b2c7d8c](https://github.com/julian-perge/SigilADay/commits/b2c7d8cc8658c826a99dec1e1455a5a0e04446d8))
+
 ## [1.21.1](https://github.com/julian-perge/SigilADay/compare/v1.21.0...v1.21.1) (2021-12-25)
 
 
