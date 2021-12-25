@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.21.4](https://github.com/julian-perge/SigilADay/compare/v1.21.3...v1.21.4) (2021-12-25)
+
+
+### Refactors
+
+* Changed AbilityIdentifier.GetAbilityIdentifier to AbilityIdentifier.GetID ([ad64c98](https://github.com/julian-perge/SigilADay/commits/ad64c98baed0964fefa467dabbb04f84f5576e77))
+* Removed redundant BepInDependency.DependencyFlags.HardDependency param ([038082e](https://github.com/julian-perge/SigilADay/commits/038082e3ec58e551cf1e7bfcf743d9128974d3cf))
+
 ## [1.21.3](https://github.com/julian-perge/SigilADay/compare/v1.21.2...v1.21.3) (2021-12-25)
 
 
