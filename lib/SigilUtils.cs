@@ -47,7 +47,7 @@ namespace SigilADay_julianperge
 				}
 			);
 		}
-		
+
 		public static NewAbility CreateAbility<T>(
 			byte[] texture,
 			string rulebookName,
@@ -56,9 +56,9 @@ namespace SigilADay_julianperge
 		) where T : AbilityBehaviour
 		{
 			return CreateAbility<T>(
-				LoadTextureFromResource(texture), 
-				rulebookName, 
-				rulebookDescription, 
+				LoadTextureFromResource(texture),
+				rulebookName,
+				rulebookDescription,
 				powerLevel
 				);
 		}
@@ -71,7 +71,7 @@ namespace SigilADay_julianperge
 		) where T : AbilityBehaviour
 		{
 			return CreateAbility<T>(
-				CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, powerLevel: powerLevel), 
+				CreateInfoWithDefaultSettings(rulebookName, rulebookDescription, powerLevel: powerLevel),
 				texture
 			);
 		}
@@ -108,7 +108,7 @@ namespace SigilADay_julianperge
 		{
 			return CreateSpecialAbility(null);
 		}
-		
+
 		public static NewSpecialAbility CreateSpecialAbility(
 			SpecialCardBehaviour type,
 			StatIconInfo info = null
@@ -128,7 +128,7 @@ namespace SigilADay_julianperge
 
 			return null;
 		}
-		
+
 		public static Texture2D LoadTextureFromResource(byte[] resourceFile)
 		{
 			var texture = new Texture2D(2, 2);
@@ -138,7 +138,7 @@ namespace SigilADay_julianperge
 
 		public static AbilityIdentifier GetAbilityId(string rulebookName)
 		{
-			return AbilityIdentifier.GetAbilityIdentifier(SigilADay_julianperge.Plugin.PluginGuid, rulebookName);
+			return AbilityIdentifier.GetID(SigilADay_julianperge.Plugin.PluginGuid, rulebookName);
 		}
 
 		public static SpecialAbilityIdentifier GetSpecialAbilityId(string rulebookName)
