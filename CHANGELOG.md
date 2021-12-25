@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.21.1](https://github.com/julian-perge/SigilADay/compare/v1.21.0...v1.21.1) (2021-12-25)
+
+
+### Bug Fixes
+
+* Moved tools back to main directory to avoid all the issues that keep coming up with with relative and parent dirs. ([15337e4](https://github.com/julian-perge/SigilADay/commits/15337e4c25fb1ab15adbdfc24e60ac9d65729423))
+* Refactored checking if card exists in card pool to now ONLY check ScriptableObjectLoader<CardInfo>.allData ([155e572](https://github.com/julian-perge/SigilADay/commits/155e572887009dc01dd882d91bb48b448f51c64b))
+* Removed `cd ./tools` call in scripts ([4f7925f](https://github.com/julian-perge/SigilADay/commits/4f7925fa0fd955892546c3ba67d53e1f0008061a))
+
 ## [1.20.0](https://github.com/julian-perge/SigilADay/compare/v1.19.0...v1.20.0) (2021-12-11)
 
 
