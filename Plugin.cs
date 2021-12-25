@@ -6,8 +6,8 @@ using HarmonyLib;
 namespace SigilADay_julianperge
 {
 	[BepInPlugin(PluginGuid, PluginName, PluginVersion)]
-	[BepInDependency(APIGUID, BepInDependency.DependencyFlags.HardDependency)]
-	[BepInDependency(JSONGUID, BepInDependency.DependencyFlags.HardDependency)]
+	[BepInDependency(APIGUID)]
+	[BepInDependency(JSONGUID)]
 	public partial class Plugin : BaseUnityPlugin
 	{
 		public const string APIGUID = "cyantist.inscryption.api";
