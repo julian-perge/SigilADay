@@ -13,15 +13,15 @@
   "compareUrlFormat": "https://github.com/julian-perge/SigilADay/compare/{{previousTag}}...{{currentTag}}",
   "bumpFiles": [
     {
-      "filename": "../package.json",
+      "filename": "./package.json",
       "type": "json"
     },
     {
-      "filename": "../manifest.json",
+      "filename": "./manifest.json",
       "updater": "manifest-version-updater.js"
     },
     {
-      "filename": "../Plugin.cs",
+      "filename": "./Plugin.cs",
       "updater": "plugin-version-updater.js"
     }
   ]
