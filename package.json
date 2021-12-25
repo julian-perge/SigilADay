@@ -10,9 +10,9 @@
     "postchangelog": "sh ./fix-header-levels-in-changelog.sh",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "standard-version && npm run-script postchangelog",
-    "release:patch": "standard-version --release-as patch && npm run-script postchangelog",
-    "release:minor": "standard-version --release-as minor && npm run-script postchangelog",
-    "release:major": "standard-version --release-as major && npm run-script postchangelog",
+    "release:patch": "standard-version --release-as patch",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major",
     "prepare": "husky install"
   },
   "repository": {
@@ -36,6 +36,11 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "standard-version": {
+    "scripts": {
+      "postchangelog": "sh ./fix-header-levels-in-changelog.sh"
     }
   }
 }
