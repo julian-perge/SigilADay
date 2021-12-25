@@ -1,6 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using APIPlugin;
 using BepInEx.Bootstrap;
 using DiskCardGame;
 
@@ -41,9 +40,7 @@ namespace SigilADay_julianperge
 
 			bool MatchesNameOfCard(CardInfo card) => card.name == nameOfCard;
 
-			return ScriptableObjectLoader<CardInfo>.allData.Exists(MatchesNameOfCard) ||
-			       CustomCard.cards.Exists(elem => elem.name == nameOfCard) ||
-			       NewCard.cards.Exists(MatchesNameOfCard);
-		}
+      return ScriptableObjectLoader<CardInfo>.allData.Exists(MatchesNameOfCard);
+    }
 	}
 }
