@@ -6,8 +6,9 @@ This was forked from Cyantist's [repo](https://github.com/ScottWilson0903/SigilA
 
 [Changelog](https://github.com/julian-perge/SigilADay/blob/main/CHANGELOG.md)
 
-## INACTIVE UNTIL FIXED (as of version 1.8.1)
+## INACTIVE UNTIL FIXED (as of version 1.12.6)
 
+- Exodia
 - Hermit
 
 ## Example with JSONCardLoader
