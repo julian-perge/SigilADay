@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.21.6](https://github.com/julian-perge/SigilADay/compare/v1.21.5...v1.21.6) (2021-12-27)
+
+
+### Refactors
+
+* Disabled Exodia until further notice. ([b320164](https://github.com/julian-perge/SigilADay/commits/b320164e49f70bd2f6cd08da418f6acbb5502f1a))
+
 ## [1.21.5](https://github.com/julian-perge/SigilADay/compare/v1.21.4...v1.21.5) (2021-12-25)
 
 
