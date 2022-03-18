@@ -1,60 +1,60 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <Description>Collection of custom sigils</Description>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <LangVersion>latest</LangVersion>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>SigilADay_julianperge</AssemblyName>
-    <RootNamespace>SigilADay_julianperge</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<Description>Collection of custom sigils</Description>
+		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>latest</LangVersion>
+		<Nullable>disable</Nullable>
+		<IsPackable>false</IsPackable>
+		<TargetFramework>net472</TargetFramework>
+		<AssemblyName>SigilADay_julianperge</AssemblyName>
+		<RootNamespace>SigilADay_julianperge</RootNamespace>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="BepInEx.Analyzers" Version="1.0.7" PrivateAssets="all" />
-    <PackageReference Include="BepInEx.Core" Version="5.4.16" />
-    <PackageReference Include="BepInEx.PluginInfoProps" Version="1.1.0" />
-    <PackageReference Include="UnityEngine.Modules" Version="2019.4.24" IncludeAssets="compile" />
-  </ItemGroup>
+	<!-- BepInEx dependencies -->
+	<ItemGroup>
+		<PackageReference Include="BepInEx.Analyzers" Version="1.0.8" PrivateAssets="all" />
+		<PackageReference Include="BepInEx.Core" Version="5.4.19" />
+		<PackageReference Include="Inscryption.GameLibs" Version="1.9.0-r.0" />
+		<PackageReference Include="System.Resources.Extensions" Version="6.0.0" />
+		<PackageReference Include="UnityEngine.Modules" Version="2019.4.24" IncludeAssets="compile" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="API">
-      <HintPath>lib\API.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>lib\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Sirenix.Serialization">
-      <HintPath>lib\Sirenix.Serialization.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+	<ItemGroup>
+		<Reference Include="InscryptionAPI">
+			<HintPath>lib\InscryptionAPI.dll</HintPath>
+		</Reference>
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
 
-  <Target Name="CopyDLLs" AfterTargets="Build">
-    <Message Text="Executing CopyDLLs task" Importance="High" />
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
 
-    <Copy SourceFiles="$(TargetDir)$(ProjectName).dll;" DestinationFolder="C:\r2modman\Inscryption\profiles\Default\BepInEx\plugins\" />
-    
-    <Copy Condition="Exists('C:\DEVELOPER\InscryptionMods\lib\')" SourceFiles="$(TargetDir)$(ProjectName).dll" DestinationFolder="C:\DEVELOPER\InscryptionMods\lib\" />
+	<Target Name="CopyDLLs" AfterTargets="Build">
+		<Message Text="Executing CopyDLLs task" Importance="High" />
 
-    <Message Text="Copied build files" Importance="High" />
-  </Target>
+		<Copy SourceFiles="$(TargetDir)$(ProjectName).dll" DestinationFolder="C:\Program Files (x86)\Steam\steamapps\common\Inscryption\BepInEx\plugins" />
 
-  <Target Name="ZipFiles" AfterTargets="Build">
-    <Exec Command="7z a -tzip SigilADay-JulianPerge.zip .\README.md .\manifest.json .\icon.png .\bin\Debug\netstandard2.0\SigilADay_julianperge.dll" />
-  </Target>
-  
+		<!--    <Copy Condition="Exists('C:\DEVELOPER\InscryptionMods\lib\')" SourceFiles="$(TargetDir)$(ProjectName).dll" DestinationFolder="C:\DEVELOPER\InscryptionMods\lib\" />-->
+
+		<Message Text="Copied build files" Importance="High" />
+	</Target>
+
+	<Target Name="ZipFiles" AfterTargets="Build">
+		<Exec Command="7z a -tzip SigilADay-JulianPerge.zip .\README.md .\manifest.json .\icon.png $(TargetDir)$(ProjectName).dll" />
+	</Target>
+
 </Project>

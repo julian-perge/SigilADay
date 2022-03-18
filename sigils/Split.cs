@@ -1,73 +1,61 @@
 ﻿using System.Collections;
-using System.Linq;
-using APIPlugin;
 using DiskCardGame;
+using InscryptionAPI.Card;
+using Sirenix.Utilities;
 using UnityEngine;
 using Resources = SigilADay_julianperge.Properties.Resources;
 
-namespace SigilADay_julianperge
-{
-	public partial class Plugin
-	{
-		private NewAbility AddSplit()
-		{
-			// setup ability
-			const string rulebookName = "Split";
-			const string rulebookDescription =
-				"When [creature] is played, create a copy on an open space on your side of the field.";
+namespace SigilADay_julianperge;
 
-			return SigilUtils.CreateAbility<Split>(
-				Resources.ability_split,
-				rulebookName,
-				rulebookDescription
-			);
-		}
+public partial class Plugin
+{
+	private AbilityManager.FullAbility AddSplit()
+	{
+		// setup ability
+		const string rulebookName = "Split";
+		const string rulebookDescription =
+			"When [creature] is played, create a copy on an open space on your side of the field.";
+
+		return SigilUtils.CreateAbility<Split>(
+			Resources.ability_split,
+			rulebookName,
+			rulebookDescription
+		);
+	}
+}
+
+public class Split : AbilityBehaviour
+{
+	public static Ability ability;
+	public override Ability Ability => ability;
+
+	public override bool RespondsToResolveOnBoard()
+	{
+		return true;
 	}
 
-	public class Split : AbilityBehaviour
+	public override IEnumerator OnResolveOnBoard()
 	{
-		public static Ability ability;
-		public override Ability Ability => ability;
+		yield return base.PreSuccessfulTriggerSequence();
+		yield return new WaitForSeconds(0.2f);
 
-		public override bool RespondsToResolveOnBoard()
-		{
-			return true;
-		}
+		// only get a list of player slots
+		var openSlots = BoardManager.Instance.GetSlots(!base.Card.OpponentCard)
+			.Where(slot => !slot.Card)
+			.ToList();
 
-		public override IEnumerator OnResolveOnBoard()
+		base.Card.Anim.StrongNegationEffect();
+		if (!openSlots.IsNullOrEmpty())
 		{
-			yield return base.PreSuccessfulTriggerSequence();
+			// now only check if a card exists in that slot
+			CardSlot slotToSpawnIn = openSlots.Randomize().First();
+			Plugin.Log.LogDebug($"-> Spawning [{Card.Info.name}] in slot [{slotToSpawnIn.name}]");
+			yield return BoardManager.Instance.CreateCardInSlot(CardLoader.GetCardByName(Card.Info.name), slotToSpawnIn);
+
+			ViewManager.Instance.SwitchToView(View.Board);
 			yield return new WaitForSeconds(0.2f);
-
-			// only get a list of player slots
-			var slotsWithCards = Singleton<BoardManager>.Instance.GetSlots(true);
-
-			base.Card.Anim.StrongNegationEffect();
-			if (slotsWithCards.TrueForAll(slot => slot.Card))
-			{
-				Plugin.Log.LogDebug(
-					$"All slots are full, not spawning a copy of [{base.Card.Info.name}]");
-			}
-			else
-			{
-				Plugin.Log.LogDebug("Starting copy sequence");
-
-				// now only check if a card exists in that slot
-				foreach (var slot in slotsWithCards.Where(slot => !slot.Card))
-				{
-					string cardToSpawn = base.Card.Info.name;
-					Plugin.Log.LogDebug($"-> Spawning [{cardToSpawn}] in slot [{slot.name}]");
-					PlayableCard copy = CardSpawner.SpawnPlayableCard(CardLoader.GetCardByName(cardToSpawn));
-					yield return Singleton<BoardManager>.Instance.ResolveCardOnBoard(copy, slot);
-					break;
-				}
-
-				Singleton<ViewManager>.Instance.SwitchToView(View.Board);
-				yield return new WaitForSeconds(0.2f);
-			}
-
-			yield return base.LearnAbility(0.25f);
-			yield break;
 		}
+
+		yield return base.LearnAbility(0.25f);
 	}
 }
