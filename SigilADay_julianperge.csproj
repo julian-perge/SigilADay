@@ -54,7 +54,7 @@
 	</Target>
 
 	<Target Name="ZipFiles" AfterTargets="Build">
-		<Exec Command="7z a -tzip SigilADay-JulianPerge.zip .\README.md .\manifest.json .\icon.png $(TargetDir)$(ProjectName).dll" />
+		<Exec Command="7z u -tzip SigilADay-JulianPerge.zip .\README.md .\manifest.json .\icon.png $(TargetDir)$(ProjectName).dll" />
 	</Target>
 
 </Project>

@@ -1,9 +1,9 @@
 {
-  "name": "SigilADay_julianperge",
-  "version_number": "1.22",
-  "website_url": "https://github.com/julian-perge/SigilADay",
-  "description": "Collection of custom sigils",
-  "dependencies": [
-    "API_dev-API-2.0.1"
-  ]
+	"name": "SigilADay_julianperge",
+	"version_number": "1.22",
+	"website_url": "https://github.com/julian-perge/SigilADay",
+	"description": "KAYCEE'S MOD SUPPORT! Collection of custom sigils that I probably won't update anymore since I'm helping develop GrimoraMod pretty much full time.",
+	"dependencies": [
+		"API_dev-API-2.0.1"
+	]
 }
