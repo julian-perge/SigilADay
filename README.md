@@ -1,5 +1,9 @@
 # SigilADay (except weekends, sometimes)
 
+**I will most likely not be adding anymore custom sigils as AllTheSigils has done a fantastic job of creating a BUNCH of sigils.**
+
+**I'm also working on [GrimoraMod](https://inscryption.thunderstore.io/package/Arackulele/GrimoraMod/) pretty much full time, so I'd appreciate if you go play it and provide good feedback!**
+
 Collection of custom sigils added to daily by Julian Perge.
 
 This was forked from Cyantist's [repo](https://github.com/ScottWilson0903/SigilADay/) as I wanted to make my own sigils that could be used in the [JSONCardLoader](https://github.com/MADH95/JSONLoaderPlugin)
@@ -18,33 +22,16 @@ File name `geck.jldr` in `MADH95Mods-JSONCardLoader` folder.
 
 ```json
 {
-  "name": "Geck",
-  "fieldsToEdit": ["customAbilities"],
-  "customAbilities": [
-    {
-      "name": "Evolve Randomly",
-      "GUID": "julianperge.inscryption.sigiladay"
-    }
-  ]
+	"name": "Geck",
+	"fieldsToEdit": ["customAbilities"],
+	"customAbilities": [
+		{
+			"name": "Evolve Randomly",
+			"GUID": "julianperge.inscryption.sigiladay"
+		}
+	]
 }
 ```
-
-## Installation (automated)
-
-This is the recommended way to install the API on the game.
-
-- Download and install [Thunderstore Mod Manager](https://www.overwolf.com/app/Thunderstore-Thunderstore_Mod_Manager) or [r2modman](https://timberborn.thunderstore.io/package/ebkr/r2modman/)
-- Click Install with Mod Manager button on top of the [page](https://inscryption.thunderstore.io/package/Cyantist/SigilADay/)
-- Run the game via the mod manager
-
-## Installation (manual)
-
-To install this plugin first you need to install BepInEx as a mod loader for Inscryption. A guide to do this can be found [here](https://docs.bepinex.dev/articles/user_guide/installation/index.html#where-to-download-bepinex). Inscryption needs the 86x (32 bit) mono version.
-
-You will also need to install the [CardLoaderPlugin](https://github.com/ScottWilson0903/InscryptionAPI)
-To install Inscryption API you simply need to copy **API.dll** from [releases](https://github.com/ScottWilson0903/InscryptionAPI/releases) to **Inscryption/BepInEx/plugins**.
-
-To install SigilADay_julianperge.dll you simply need to copy **SigilADay_julianperge.dll**folder from the source code zip in [releases](https://github.com/julian-perge/SigilADay/releases) to a**JulianPerge-SigilADay**folder inside**Inscryption/BepInEx/plugins**.
 
 ### Sigils so far
 
